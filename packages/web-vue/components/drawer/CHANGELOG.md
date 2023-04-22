@@ -2,6 +2,33 @@
 changelog: true
 ```
 
+## 2.43.2
+
+`2023-02-24`
+
+### 💎 Enhancement
+
+- add update method of function call ([#2155](https://github.com/arco-design/arco-design-vue/pull/2155))
+
+
+## 2.43.0
+
+`2023-02-10`
+
+### 🆕 Feature
+
+- add `before-open` and `before-close` events ([#2064](https://github.com/arco-design/arco-design-vue/pull/2064))
+
+
+## 2.38.0
+
+`2022-10-28`
+
+### 🐛 BugFix
+
+- Fix the problem that closing does not unload internal components in function calls ([#1778](https://github.com/arco-design/arco-design-vue/pull/1778))
+
+
 ## 2.37.4
 
 `2022-09-30`

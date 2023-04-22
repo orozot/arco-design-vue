@@ -2,6 +2,42 @@
 changelog: true
 ```
 
+## 2.45.1
+
+`2023-04-14`
+
+### 🐛 BugFix
+
+- fixed individual cases where tab slots are not updated ([#2325](https://github.com/arco-design/arco-design-vue/pull/2325))
+
+
+## 2.43.0
+
+`2023-02-10`
+
+### 🐛 BugFix
+
+- Hide the tab indicator when there are no matching tabs ([#2105](https://github.com/arco-design/arco-design-vue/pull/2105))
+
+
+## 2.41.1
+
+`2023-01-06`
+
+### 🐛 BugFix
+
+- Fix the problem of scrolling exception under `capsule` type ([#2031](https://github.com/arco-design/arco-design-vue/pull/2031))
+
+
+## 2.40.1
+
+`2022-12-23`
+
+### 💅 Style
+
+- Fix the problem that `size` does not take effect under `rounded` and `capsule` types ([#1988](https://github.com/arco-design/arco-design-vue/pull/1988))
+
+
 ## 2.37.4
 
 `2022-09-30`

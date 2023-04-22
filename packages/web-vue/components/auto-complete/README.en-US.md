@@ -28,7 +28,7 @@ description: The auto-complete function of the input.
 |popup-container|Mount container for popup|`string \| HTMLElement \| null \| undefined`|`-`||
 |strict|Whether it is strict verification mode|`boolean`|`false`||
 |filter-option|Custom option filtering method|`FilterOption`|`true`||
-|trigger-props|trigger props|`object`|`-`|2.14.0|
+|trigger-props|trigger props|`TriggerProps`|`-`|2.14.0|
 |allow-clear|Whether to allow the input to be cleared|`boolean`|`false`|2.23.0|
 ### `<auto-complete>` Events
 
@@ -38,6 +38,12 @@ description: The auto-complete function of the input.
 |search|Emitted when the user searches|value: `string`||
 |select|Emitted when an option is selected|value: `string`||
 |clear|Triggered when the user clicks the clear button|ev: `Event`|2.23.0|
+### `<auto-complete>` Methods
+
+|Method|Description|Parameters|Return|version|
+|---|---|---|:---:|:---|
+|focus|Make the input box focus|-|-|2.40.0|
+|blur|Make the input box lose focus|-|-|2.40.0|
 ### `<auto-complete>` Slots
 
 |Slot Name|Description|Parameters|version|

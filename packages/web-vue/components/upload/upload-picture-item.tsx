@@ -60,7 +60,7 @@ export default defineComponent({
               </div>
             )}
             <div class={`${itemCls}-operation`}>
-              {props.file.status !== 'error' && (
+              {props.file.status !== 'error' && uploadCtx?.showPreviewButton && (
                 <span
                   class={[uploadCtx?.iconCls, `${uploadCtx?.iconCls}-preview`]}
                   onClick={() => uploadCtx?.onPreview(props.file)}
@@ -88,6 +88,7 @@ export default defineComponent({
                     uploadCtx?.customIcon?.removeIcon?.() ?? <IconDelete />}
                 </span>
               )}
+              {uploadCtx?.slots['extra-button']?.(props.file)}
             </div>
           </div>
         </>

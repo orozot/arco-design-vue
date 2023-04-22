@@ -2,6 +2,43 @@
 changelog: true
 ```
 
+## 2.45.0
+
+`2023-04-07`
+
+### 🆕 新增功能
+
+- 新增文案显示props ([#2223](https://github.com/arco-design/arco-design-vue/pull/2223))
+
+
+## 2.42.0
+
+`2023-01-13`
+
+### 🐛 问题修复
+
+- 修复类型为`line`时自定义颜色样式错误的问题 ([#2044](https://github.com/arco-design/arco-design-vue/pull/2044))
+
+
+## 2.40.1
+
+`2022-12-23`
+
+### 🐛 问题修复
+
+- 修复switch组件type为line,size为small,checked状态圆点偏移不正确 ([#1975](https://github.com/arco-design/arco-design-vue/pull/1975))
+
+
+## 2.39.0
+
+`2022-11-18`
+
+### 🐛 问题修复
+
+- 修复状态改变前钩子的值 ([#1859](https://github.com/arco-design/arco-design-vue/pull/1859))
+- 修复样式 token 问题 ([#1859](https://github.com/arco-design/arco-design-vue/pull/1859))
+
+
 ## 2.37.0
 
 `2022-09-16`

@@ -86,7 +86,7 @@ import {
 } from 'vue';
 import { getPrefixCls } from '../_utils/global-config';
 import ClientOnly from '../_components/client-only';
-import ArcoButton from '../button';
+import ArcoButton, { ButtonProps } from '../button';
 import IconHover from '../_components/icon-hover.vue';
 import IconClose from '../icon/icon-close';
 import { useI18n } from '../locale';
@@ -190,7 +190,7 @@ export default defineComponent({
      * @version 2.9.0
      */
     okButtonProps: {
-      type: Object,
+      type: Object as PropType<ButtonProps>,
     },
     /**
      * @zh 取消按钮的Props
@@ -198,7 +198,7 @@ export default defineComponent({
      * @version 2.9.0
      */
     cancelButtonProps: {
-      type: Object,
+      type: Object as PropType<ButtonProps>,
     },
     /**
      * @zh 关闭时是否卸载节点
@@ -256,7 +256,7 @@ export default defineComponent({
       type: Function as PropType<() => boolean>,
     },
     /**
-     * @zh 是否支持 ESC 键关闭对话框
+     * @zh 是否支持 ESC 键关闭抽屉
      * @en Whether to support the ESC key to close the dialog
      * @version 2.15.0
      */
@@ -264,7 +264,10 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-
+    /**
+     * @zh 抽屉是否挂载在 `body` 元素下
+     * @en Whether the drawer is mounted under the `body` element
+     */
     renderToBody: {
       type: Boolean,
       default: true,
@@ -319,6 +322,18 @@ export default defineComponent({
      * @en Triggered when the drawer is closed (the animation ends)
      */
     'close': () => true,
+    /**
+     * @zh 对话框打开前触发
+     * @en Triggered before drawer is opened
+     * @version 2.43.0
+     */
+    'beforeOpen': () => true,
+    /**
+     * @zh 对话框关闭前触发
+     * @en Triggered before drawer is closed
+     * @version 2.43.0
+     */
+    'beforeClose': () => true,
   },
   /**
    * @zh 标题
@@ -482,10 +497,12 @@ export default defineComponent({
         _visible.value = visible;
       }
       if (visible) {
+        emit('beforeOpen');
         mounted.value = true;
         setOverflowHidden();
         addGlobalKeyDownListener();
       } else {
+        emit('beforeClose');
         removeGlobalKeyDownListener();
       }
     });

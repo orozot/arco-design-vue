@@ -14,6 +14,7 @@
       :trigger="trigger"
       :position="position"
       :popup-container="popupContainer"
+      :hide-on-select="hideOnSelect"
       @select="handleSelect"
       @popup-visible-change="handlePopupVisibleChange"
     >
@@ -34,7 +35,7 @@
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
 import IconMore from '../icon/icon-more';
-import Button, { ButtonGroup } from '../button';
+import Button, { ButtonGroup, ButtonProps } from '../button';
 import Dropdown from './dropdown.vue';
 import { getPrefixCls } from '../_utils/global-config';
 import { TriggerEvent } from '../_utils/constant';
@@ -122,7 +123,15 @@ export default defineComponent({
      * @en Button props
      */
     buttonProps: {
-      type: Object,
+      type: Object as PropType<ButtonProps>,
+    },
+    /**
+     * @zh 是否在用户选择后隐藏弹出框
+     * @en Whether to hide popup when the user selects
+     */
+    hideOnSelect: {
+      type: Boolean,
+      default: true,
     },
   },
   emits: {

@@ -24,7 +24,7 @@
         :visible="panelVisible"
         :error="error"
         :disabled="disabled"
-        :readonly="readonly"
+        :readonly="readonly || disabledInput"
         :allow-clear="allowClear && !readonly"
         :placeholder="computedPlaceholder"
         :input-value="inputValue"
@@ -34,6 +34,9 @@
         @change="onInputChange"
         @pressEnter="onInputPressEnter"
       >
+        <template v-if="$slots.prefix" #prefix>
+          <slot name="prefix" />
+        </template>
         <template #suffix-icon>
           <slot name="suffix-icon">
             <IconCalendar />
@@ -95,7 +98,7 @@ import {
 import useFormat from './hooks/use-format';
 import useRangePickerState from './hooks/use-range-picker-state';
 import useRangeHeaderValue from './hooks/use-range-header-value';
-import Trigger from '../trigger';
+import Trigger, { TriggerProps } from '../trigger';
 import DateRangeInput from '../_components/picker/input-range.vue';
 import RangePickerPanel from './range-picker-panel.vue';
 import useRangeTimePickerValue from './hooks/use-range-time-picker-value';
@@ -288,7 +291,7 @@ export default defineComponent({
       type: Boolean,
     },
     triggerProps: {
-      type: Object as PropType<Record<string, unknown>>,
+      type: Object as PropType<TriggerProps>,
     },
     unmountOnClose: {
       type: Boolean,
@@ -299,6 +302,23 @@ export default defineComponent({
     },
     showConfirmBtn: {
       type: Boolean,
+    },
+    /**
+     * @zh 是否禁止键盘输入日期
+     * @en Whether input is disabled with the keyboard.
+     * @version 2.43.0
+     */
+    disabledInput: {
+      type: Boolean,
+      default: false,
+    },
+    /**
+     * @zh 是否启用缩写
+     * @en Whether to enable abbreviation
+     */
+    abbreviation: {
+      type: Boolean,
+      default: true,
     },
   },
   emits: {
@@ -646,6 +666,7 @@ export default defineComponent({
     watch(panelVisible, (newVisible) => {
       startHeaderMode.value = undefined;
       endHeaderMode.value = undefined;
+
       setProcessValue(undefined);
       setPreviewValue(undefined);
       // open
@@ -662,8 +683,10 @@ export default defineComponent({
     });
 
     watch(focusedIndex, () => {
-      focusInput(focusedIndex.value);
-      setInputValue(undefined);
+      if (props.disabledInput) {
+        focusInput(focusedIndex.value);
+        setInputValue(undefined);
+      }
     });
 
     function emitChange(
@@ -685,6 +708,17 @@ export default defineComponent({
       }
     }
 
+    function getSortedDayjsArrayByExchangeTimeOrNot(newValue: Dayjs[]) {
+      let sortedValue = getSortedDayjsArray(newValue);
+      if (hasTime.value && !exchangeTime.value) {
+        sortedValue = [
+          getMergedOpValue(sortedValue[0], newValue[0]),
+          getMergedOpValue(sortedValue[1], newValue[1]),
+        ];
+      }
+      return sortedValue;
+    }
+
     function confirm(
       value: Array<Dayjs | undefined> | undefined,
       showPanel?: boolean,
@@ -700,14 +734,7 @@ export default defineComponent({
       let newValue = value ? [...value] : undefined;
 
       if (isCompleteRangeValue(newValue)) {
-        let sortedValue = getSortedDayjsArray(newValue);
-        if (hasTime.value && !exchangeTime.value) {
-          sortedValue = [
-            getMergedOpValue(sortedValue[0], newValue[0]),
-            getMergedOpValue(sortedValue[1], newValue[1]),
-          ];
-        }
-        newValue = sortedValue;
+        newValue = getSortedDayjsArrayByExchangeTimeOrNot(newValue);
       }
 
       emitChange(newValue, emitOk);
@@ -741,7 +768,7 @@ export default defineComponent({
 
       let newValue = [...value];
       if (isCompleteRangeValue(newValue)) {
-        newValue = getSortedDayjsArray(newValue);
+        newValue = getSortedDayjsArrayByExchangeTimeOrNot(newValue);
       }
 
       setProcessValue(newValue);
@@ -830,6 +857,8 @@ export default defineComponent({
         select(newValue);
         if (!isCompleteRangeValue(newValue)) {
           focusedIndex.value = nextFocusedIndex.value;
+        } else {
+          focusedIndex.value = 0;
         }
       }
     }
@@ -973,6 +1002,7 @@ export default defineComponent({
         'disabledDate',
         'disabledTime',
         'hideTrigger',
+        'abbreviation',
       ]),
       prefixCls,
       format: parseValueFormat.value,

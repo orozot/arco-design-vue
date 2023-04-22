@@ -65,36 +65,39 @@ description: Users can transfer files or submit corresponding content.
 |show-retry-button|Whether to display the retry button|`boolean`|`true`|2.11.0|
 |show-cancel-button|Whether to display the cancel button|`boolean`|`true`|2.11.0|
 |show-upload-button|Whether to display the retry button. Added `showOnExceedLimit` support in version 2.14.0|`boolean \| { showOnExceedLimit: boolean }`|`true`|2.11.0|
+|show-preview-button|Whether to display the preview button in picture-card|`boolean`|`true`|2.42.0|
 |download|Whether to add download attribute to `<a>` link|`boolean`|`false`|2.11.0|
 |show-link|In the list mode, if the uploaded file has a URL, the link will be displayed. If you turn off only display text and click to trigger the `preview` event.|`boolean`|`true`|2.13.0|
 |image-loading|Native HTML attributes of `<img>`, browser support is required|`'eager' \| 'lazy'`|`-`|2.11.0|
 |list-type|Picture list type|`'text' \| 'picture' \| 'picture-card'`|`'text'`||
 |response-url-key|Get the key of the image URL in the Response. After opening, it will replace the pre-load image with the uploaded image|`string \| ((fileItem: FileItem) => string)`|`-`||
 |custom-icon|Custom icon|`CustomIcon`|`-`||
-|on-before-upload|Trigger before uploading a picture|`(file: File) => Promise<boolean \| File>`|`-`||
-|on-before-remove|Triggered before removing the picture|`(fileItem: FileItem) => Promise<boolean>`|`-`||
+|on-before-upload|Trigger before uploading a file|`(file: File) => boolean \| Promise<boolean \| File>`|`-`||
+|on-before-remove|Triggered before removing the file|`(fileItem: FileItem) => Promise<boolean>`|`-`||
 |on-button-click|Click the upload button to trigger (if the Promise is returned, the default input upload will be closed)|`(event: Event) => Promise<FileList> \| void`|`-`||
 ### `<upload>` Events
 
 |Event Name|Description|Parameters|
 |---|---|---|
-|exceed-limit|Triggered when the uploaded image exceeds the limit|fileList: `FileItem[]`<br>files: `File[]`|
-|change|Triggered when the status of the uploaded image changes|fileList: `FileItem[]`<br>fileItem: `fileItem`|
-|progress|Triggered when the uploading image progress changes|fileItem: `fileItem`<br>ev: `ProgressEvent`|
+|exceed-limit|Triggered when the uploaded file exceeds the limit|fileList: `FileItem[]`<br>files: `File[]`|
+|change|Triggered when the status of the uploaded file changes|fileList: `FileItem[]`<br>fileItem: `fileItem`|
+|progress|Triggered when the uploading file progress changes|fileItem: `fileItem`<br>ev: `ProgressEvent`|
 |preview|Trigger when the image preview is clicked|fileItem: `FileItem`|
 |success|Triggered when upload is successful|fileItem: `FileItem`|
 |error|Triggered when upload fails|fileItem: `FileItem`|
 ### `<upload>` Methods
 
-|Method|Description|Parameters|Return|
-|---|---|---|:---:|
-|submit|Upload file (file that has been initialized)|fileItem: `FileItem`|-|
-|abort|Abort upload|fileItem: `FileItem`|-|
-|updateFile|Update file|id: `string`<br>file: `File`|-|
+|Method|Description|Parameters|Return|version|
+|---|---|---|:---:|:---|
+|submit|Upload file (file that has been initialized)|fileItem: `FileItem`|-||
+|abort|Abort upload|fileItem: `FileItem`|-||
+|updateFile|Update file|id: `string`<br>file: `File`|-||
+|upload|Upload file|files: `File[]`|-|2.41.0|
 ### `<upload>` Slots
 
 |Slot Name|Description|Parameters|version|
 |---|---|---|:---|
+|extra-button|Extra button|fileItem: `FileItem`|2.43.0|
 |image|Image|fileItem: `FileItem`|2.23.0|
 |file-name|File name|-|2.23.0|
 |file-icon|File icon|-|2.23.0|
@@ -120,8 +123,8 @@ description: Users can transfer files or submit corresponding content.
 |file|File object|`File`|`-`|
 |percent|Upload progress percentage|`number`|`-`|
 |response|The response returned by the current file upload request|`any`|`-`|
-|url|The image address|`string`|`-`|
-|name|Picture file name|`string`|`-`|
+|url|The file address|`string`|`-`|
+|name|The file name|`string`|`-`|
 
 
 

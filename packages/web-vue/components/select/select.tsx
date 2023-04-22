@@ -16,9 +16,15 @@ import {
   isNull,
   isNumber,
   isObject,
+  isString,
   isUndefined,
 } from '../_utils/is';
-import { getKeyFromValue, isGroupOptionInfo, isValidOption } from './utils';
+import {
+  getKeyFromValue,
+  isGroupOptionInfo,
+  isValidOption,
+  hasEmptyStringKey,
+} from './utils';
 import Trigger, { TriggerProps } from '../trigger';
 import SelectView from '../_components/select-view/select-view';
 import { Size } from '../_utils/constant';
@@ -42,6 +48,7 @@ import { useTrigger } from '../_hooks/use-trigger';
 import { useFormItem } from '../_hooks/use-form-item';
 import { debounce } from '../_utils/debounce';
 import { SelectViewValue } from '../_components/select-view/interface';
+import { ScrollbarProps } from '../scrollbar';
 
 const DEFAULT_FIELD_NAMES = {
   value: 'value',
@@ -197,6 +204,11 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    /**
+     * @zh 是否在无值时默认选择第一个选项
+     * @en Whether to select the first option by default when there is no value
+     * @version 2.43.0
+     */
     defaultActiveFirstOption: {
       type: Boolean,
       default: true,
@@ -293,7 +305,7 @@ export default defineComponent({
       default: true,
     },
     /**
-     * @zh 用于确定选项键值得属性名
+     * @zh 用于确定选项键值的属性名
      * @en Used to determine the option key value attribute name
      * @version 2.18.0
      */
@@ -326,6 +338,15 @@ export default defineComponent({
      */
     fieldNames: {
       type: Object as PropType<SelectFieldNames>,
+    },
+    /**
+     * @zh 是否开启虚拟滚动条
+     * @en Whether to enable virtual scroll bar
+     * @version 2.38.0
+     */
+    scrollbar: {
+      type: [Boolean, Object] as PropType<boolean | ScrollbarProps>,
+      default: true,
     },
   },
   emits: {
@@ -420,6 +441,12 @@ export default defineComponent({
    * @binding {SelectOptionData} data
    */
   /**
+   * @zh 下拉框的页头
+   * @en The header of the drop-down box
+   * @slot header
+   * @version 2.43.0
+   */
+  /**
    * @zh 下拉框的页脚
    * @en The footer of the drop-down box
    * @slot footer
@@ -469,6 +496,7 @@ export default defineComponent({
       modelValue,
       fieldNames,
       loading,
+      defaultActiveFirstOption,
     } = toRefs(props);
     const prefixCls = getPrefixCls('select');
     const { mergedSize, mergedDisabled, mergedError, eventHandlers } =
@@ -511,7 +539,7 @@ export default defineComponent({
       const mergedValue = props.modelValue ?? _value.value;
       const valueArray = isArray(mergedValue)
         ? mergedValue
-        : mergedValue || isNumber(mergedValue)
+        : mergedValue || isNumber(mergedValue) || isString(mergedValue)
         ? [mergedValue]
         : [];
       return valueArray.map((value) => ({
@@ -521,7 +549,7 @@ export default defineComponent({
     });
     watch(modelValue, (value) => {
       if (isUndefined(value) || isNull(value)) {
-        _value.value = multiple.value ? [] : '';
+        _value.value = multiple.value ? [] : (value as any);
       }
     });
 
@@ -571,7 +599,7 @@ export default defineComponent({
 
       if (props.allowCreate || props.fallbackOption) {
         for (const item of computedValueObjects.value) {
-          if (!keyArray.includes(item.key)) {
+          if (!keyArray.includes(item.key) && item.value !== '') {
             const optionInfo = optionInfoMap.get(item.key);
             if (!optionInfo || optionInfo.origin === 'extraOptions') {
               valueArray.push(item);
@@ -643,7 +671,12 @@ export default defineComponent({
     // update func
     const getValueFromValueKeys = (valueKeys: string[]) => {
       if (!props.multiple) {
-        return optionInfoMap.get(valueKeys[0])?.value ?? '';
+        return (
+          optionInfoMap.get(valueKeys[0])?.value ??
+          (hasEmptyStringKey(optionInfoMap)
+            ? (undefined as unknown as string)
+            : '')
+        );
       }
       return valueKeys.map((key) => optionInfoMap.get(key)?.value ?? '');
     };
@@ -769,6 +802,7 @@ export default defineComponent({
       dropdownRef,
       optionRefs,
       virtualListRef,
+      defaultActiveFirstOption,
       onSelect: handleSelect,
       onPopupVisibleChange: handlePopupVisibleChange,
     });
@@ -869,11 +903,13 @@ export default defineComponent({
               />
             ),
             'empty': slots.empty,
+            'header': slots.header,
             'footer': slots.footer,
           }}
           loading={props.loading}
           empty={validOptionInfos.value.length === 0}
           virtualList={Boolean(props.virtualListProps)}
+          scrollbar={props.scrollbar}
           onScroll={handleDropdownScroll}
           onReachBottom={handleDropdownReachBottom}
         />
@@ -881,7 +917,7 @@ export default defineComponent({
     };
 
     const renderLabel = ({ data }: { data: SelectViewValue }) => {
-      if (slots.label || isFunction(props.formatLabel)) {
+      if ((slots.label || isFunction(props.formatLabel)) && data) {
         const optionInfo = optionInfoMap.get(data.value as string);
         if (optionInfo?.raw) {
           return (
@@ -890,7 +926,7 @@ export default defineComponent({
           );
         }
       }
-      return data.label;
+      return data?.label ?? '';
     };
 
     return () => (

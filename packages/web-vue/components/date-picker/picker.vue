@@ -24,7 +24,7 @@
         :visible="panelVisible"
         :error="error"
         :disabled="mergedDisabled"
-        :readonly="!inputEditable"
+        :readonly="!inputEditable || disabledInput"
         :allow-clear="allowClear && !readonly"
         :placeholder="computedPlaceholder"
         :input-value="inputValue"
@@ -33,7 +33,11 @@
         @clear="onInputClear"
         @change="onInputChange"
         @pressEnter="onInputPressEnter"
+        @blur="onInputBlur"
       >
+        <template v-if="$slots.prefix" #prefix>
+          <slot name="prefix" />
+        </template>
         <template #suffix-icon>
           <slot name="suffix-icon">
             <IconCalendar />
@@ -79,7 +83,7 @@ import {
 } from './interface';
 import usePickerState from './hooks/use-picker-state';
 import DateInput from '../_components/picker/input.vue';
-import Trigger from '../trigger';
+import Trigger, { TriggerProps } from '../trigger';
 import { getFormattedValue, isValidInputValue } from '../time-picker/utils';
 import PickerPanel from './picker-panel.vue';
 import pick from '../_utils/pick';
@@ -203,7 +207,7 @@ export default defineComponent({
      * @en You can pass in the parameters of the `Trigger` component
      */
     triggerProps: {
-      type: Object as PropType<Record<string, unknown>>,
+      type: Object as PropType<TriggerProps>,
     },
     /**
      * @zh 是否在隐藏的时候销毁DOM结构
@@ -316,6 +320,24 @@ export default defineComponent({
     defaultValue: {
       type: [Object, String, Number] as PropType<Date | string | number>,
     },
+    /**
+     * @zh 是否禁止键盘输入日期
+     * @en Whether input is disabled with the keyboard.
+     * @version 2.43.0
+     */
+    disabledInput: {
+      type: Boolean,
+      default: false,
+    },
+    /**
+     * @zh 是否启用缩写
+     * @en Whether to enable abbreviation
+     * @version 2.45.0
+     */
+    abbreviation: {
+      type: Boolean,
+      default: true,
+    },
   },
   emits: {
     /**
@@ -387,6 +409,12 @@ export default defineComponent({
     ) => true,
     'update:pickerValue': (value: CalendarValue) => true,
   },
+  /**
+   * @zh 输入框前缀
+   * @en Input box prefix
+   * @slot prefix
+   * @version 2.41.0
+   */
   /**
    * @zh 输入框后缀图标
    * @en Input box suffix icon
@@ -671,6 +699,10 @@ export default defineComponent({
       emit('clear');
     }
 
+    function onInputBlur() {
+      eventHandlers.value?.onBlur?.();
+    }
+
     function onInputChange(e: any) {
       setPanelVisible(true);
 
@@ -717,7 +749,9 @@ export default defineComponent({
     }
 
     function onPanelClick() {
-      focusInput();
+      if (props.disabledInput) {
+        focusInput();
+      }
     }
 
     let clearPreviewTimer: any;
@@ -782,6 +816,7 @@ export default defineComponent({
         'disabledTime',
         'showTime',
         'hideTrigger',
+        'abbreviation',
       ]),
       showNowBtn: props.showNowBtn && mode.value === 'date',
       prefixCls,
@@ -836,6 +871,7 @@ export default defineComponent({
       onInputClear,
       onInputChange,
       onInputPressEnter,
+      onInputBlur,
       onPanelClick,
     };
   },

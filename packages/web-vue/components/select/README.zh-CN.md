@@ -17,6 +17,8 @@ description: 当用户需要从一组同类数据中选择一个或多个时，�
 
 @import ./__demo__/loading.md
 
+@import ./__demo__/header.md
+
 @import ./__demo__/footer.md
 
 @import ./__demo__/border.md
@@ -64,6 +66,7 @@ description: 当用户需要从一组同类数据中选择一个或多个时，�
 |max-tag-count|多选模式下，最多显示的标签数量。0 表示不限制|`number`|`0`||
 |popup-container|弹出框的挂载容器|`string \| HTMLElement`|`-`||
 |bordered|是否显示输入框的边框|`boolean`|`true`||
+|default-active-first-option|是否在无值时默认选择第一个选项|`boolean`|`true`|2.43.0|
 |popup-visible **(v-model)**|是否显示下拉菜单|`boolean`|`-`||
 |default-popup-visible|弹出框默认是否可见（非受控模式）|`boolean`|`false`||
 |unmount-on-close|是否在下拉菜单关闭时销毁元素|`boolean`|`false`||
@@ -74,10 +77,11 @@ description: 当用户需要从一组同类数据中选择一个或多个时，�
 |format-label|格式化显示内容|`(data: SelectOptionData) => string`|`-`||
 |fallback-option|自定义值中不存在的选项|`boolean\| ((    value: string \| number \| Record<string, unknown>  ) => SelectOptionData)`|`true`|2.10.0|
 |show-extra-options|是否在下拉菜单中显示额外选项|`boolean`|`true`|2.10.0|
-|value-key|用于确定选项键值得属性名|`string`|`'value'`|2.18.0|
+|value-key|用于确定选项键值的属性名|`string`|`'value'`|2.18.0|
 |search-delay|触发搜索事件的延迟时间|`number`|`500`|2.18.0|
 |limit|多选时最多的选择个数|`number`|`0`|2.18.0|
 |field-names|自定义 `SelectOptionData` 中的字段|`SelectFieldNames`|`-`|2.22.0|
+|scrollbar|是否开启虚拟滚动条|`boolean \| ScrollbarProps`|`true`|2.38.0|
 ### `<select>` Events
 
 |事件名|描述|参数|版本|
@@ -101,6 +105,7 @@ description: 当用户需要从一组同类数据中选择一个或多个时，�
 |loading-icon|选择框的加载中图标|-|2.16.0|
 |arrow-icon|选择框的箭头图标|-|2.16.0|
 |footer|下拉框的页脚|-||
+|header|下拉框的页头|-|2.43.0|
 |label|选择框的显示内容|data: `SelectOptionData`||
 |option|选项内容|data: `SelectOptionData`||
 |empty|选项为空时的显示内容|-||

@@ -26,7 +26,7 @@ description: 输入框的自动补全功能。
 |popup-container|弹出框的挂载容器|`string \| HTMLElement \| null \| undefined`|`-`||
 |strict|是否为严格校验模式|`boolean`|`false`||
 |filter-option|自定义选项过滤方法|`FilterOption`|`true`||
-|trigger-props|trigger 组件属性|`object`|`-`|2.14.0|
+|trigger-props|trigger 组件属性|`TriggerProps`|`-`|2.14.0|
 |allow-clear|是否允许清空输入框|`boolean`|`false`|2.23.0|
 ### `<auto-complete>` Events
 
@@ -36,6 +36,12 @@ description: 输入框的自动补全功能。
 |search|用户搜索时触发|value: `string`||
 |select|选择选项时触发|value: `string`||
 |clear|用户点击清除按钮时触发|ev: `Event`|2.23.0|
+### `<auto-complete>` Methods
+
+|方法名|描述|参数|返回值|版本|
+|---|---|---|---|:---|
+|focus|使输入框获取焦点|-|-|2.40.0|
+|blur|使输入框失去焦点|-|-|2.40.0|
 ### `<auto-complete>` Slots
 
 |插槽名|描述|参数|版本|

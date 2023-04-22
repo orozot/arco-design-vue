@@ -63,7 +63,7 @@ description: 选择日期。支持年、月、周、日类型，支持范围选�
 |position|弹出的框的位置|`'top' \| 'tl' \| 'tr' \| 'bottom' \| 'bl' \| 'br'`|`'bl'`||
 |popup-visible|控制弹出框的打开或者关闭状态|`boolean`|`-`||
 |default-popup-visible|默认弹出框是打开或者关闭|`boolean`|`false`||
-|trigger-props|可以传入 `Trigger` 组件的参数|`Record<string, unknown>`|`-`||
+|trigger-props|可以传入 `Trigger` 组件的参数|`TriggerProps`|`-`||
 |unmount-on-close|是否在隐藏的时候销毁DOM结构|`boolean`|`false`||
 |placeholder|提示文案|`string`|`-`||
 |disabled|是否禁用|`boolean`|`false`||
@@ -75,6 +75,8 @@ description: 选择日期。支持年、月、周、日类型，支持范围选�
 |value-format|值的格式，对 `value` `defaultValue` `pickerValue` `defaultPickerValue` 以及事件中的返回值生效，支持设置为时间戳，Date 和字符串（参考[字符串解析格式](#字符串解析格式)）。如果没有指定，将格式化为字符串，格式同 `format`。|`'timestamp' \| 'Date' \| string`|`-`|2.16.0|
 |preview-shortcut|是否要预览快捷选择的结果|`boolean`|`true`|2.28.0|
 |show-confirm-btn|是否显示确认按钮，`showTime = true` 的时候始终显示。|`boolean`|`false`|2.29.0|
+|disabled-input|是否禁止键盘输入日期|`boolean`|`false`|2.43.0|
+|abbreviation|是否启用缩写|`boolean`|`true`|2.45.0|
 ### `Common` Events
 
 |事件名|描述|参数|
@@ -88,15 +90,16 @@ description: 选择日期。支持年、月、周、日类型，支持范围选�
 |picker-value-change|面板日期改变|value: `Date \| string \| number`<br>date: `Date`<br>dateString: `string`|
 ### `Common` Slots
 
-|插槽名|描述|参数|
-|---|:---:|---|
-|suffix-icon|输入框后缀图标|-|
-|icon-next-double|双箭头往后翻页图标|-|
-|icon-prev-double|双箭头往前翻页图标|-|
-|icon-next|单箭头往后翻页图标|-|
-|icon-prev|单箭头往前翻页图标|-|
-|cell|自定义日期单元格的内容|date: `Date`|
-|extra|额外的页脚|-|
+|插槽名|描述|参数|版本|
+|---|:---:|---|:---|
+|prefix|输入框前缀|-|2.41.0|
+|suffix-icon|输入框后缀图标|-||
+|icon-next-double|双箭头往后翻页图标|-||
+|icon-prev-double|双箭头往前翻页图标|-||
+|icon-next|单箭头往后翻页图标|-||
+|icon-prev|单箭头往前翻页图标|-||
+|cell|自定义日期单元格的内容|date: `Date`||
+|extra|额外的页脚|-||
 
 
 
@@ -110,7 +113,7 @@ description: 选择日期。支持年、月、周、日类型，支持范围选�
 |format|展示日期的格式，参考[字符串解析格式](#字符串解析格式)|`string \| ((current: Date) => string)`|`-`||
 |day-start-of-week|每周的第一天开始于周几，0 - 周日，1 - 周一，以此类推。|`0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6`|`0`|2-6 from 2.21.0|
 |show-time|是否增加时间选择|`boolean`|`false`||
-|timepicker-props|时间显示的参数，参考 [TimePickerProps](/vue/component/time-picker)|`Partial<TimePickerProps>`|`-`||
+|time-picker-props|时间显示的参数，参考 [TimePickerProps](/vue/component/time-picker)|`Partial<TimePickerProps>`|`-`||
 |disabled-time|不可选取的时间|`(current: Date) => DisabledTimeProps`|`-`||
 |show-now-btn|是否显示 `showTime` 时，选择当前时间的按钮|`boolean`|`true`||
 
@@ -184,6 +187,8 @@ description: 选择日期。支持年、月、周、日类型，支持范围选�
 |disabled-time|不可选取的时间|`(current: Date, type: 'start' \| 'end') => DisabledTimeProps`|`-`||
 |separator|范围选择器输入框内的分割符号|`string`|`-`||
 |exchange-time|时间是否会交换，默认情况下时间会影响和参与开始和结束值的排序，如果要固定时间顺序，可将其关闭。|`boolean`|`true`|2.25.0|
+|disabled-input|是否禁止键盘输入日期|`boolean`|`false`|2.43.0|
+|abbreviation|是否启用缩写|`boolean`|`true`||
 ### `<range-picker>` Events
 
 |事件名|描述|参数|

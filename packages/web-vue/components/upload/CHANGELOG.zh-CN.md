@@ -2,6 +2,77 @@
 changelog: true
 ```
 
+## 2.44.6
+
+`2023-03-31`
+
+### 🐛 问题修复
+
+- 调整 extra-button 插槽参数 ([#2272](https://github.com/arco-design/arco-design-vue/pull/2272))
+
+
+## 2.44.2
+
+`2023-03-17`
+
+### 🆎 类型修正
+
+- 允许beforeUpload返回布尔值 ([#2204](https://github.com/arco-design/arco-design-vue/pull/2204))
+
+
+## 2.43.0
+
+`2023-02-10`
+
+### 🆕 新增功能
+
+- 新增文件列表额外按钮插槽 `#extra-button` ([#2060](https://github.com/arco-design/arco-design-vue/pull/2060))
+
+
+## 2.42.0
+
+`2023-01-13`
+
+### 🆕 新增功能
+
+- 增加 `showPreviewButton` 属性 ([#2049](https://github.com/arco-design/arco-design-vue/pull/2049))
+
+### 🐛 问题修复
+
+- 修复上传时可能导致删除文件错误的问题 ([#2048](https://github.com/arco-design/arco-design-vue/pull/2048))
+
+
+## 2.41.0
+
+`2022-12-30`
+
+### 🆕 新增功能
+
+- 增加 `upload` 方法 ([#2010](https://github.com/arco-design/arco-design-vue/pull/2010))
+
+### 🐛 问题修复
+
+- 修复 `upload` 组件在部分场景下验证上传文件符合 `accept` 格式时，判断错误的 bug。 ([#2007](https://github.com/arco-design/arco-design-vue/pull/2007))
+
+
+## 2.39.1
+
+`2022-11-25`
+
+### 🆕 新增功能
+
+- 更改utils文件的类型 ([#1887](https://github.com/arco-design/arco-design-vue/pull/1887))
+
+
+## 2.39.0
+
+`2022-11-18`
+
+### 💎 功能优化
+
+- 添加一些常见的文件类型 ([#1857](https://github.com/arco-design/arco-design-vue/pull/1857))
+
+
 ## 2.34.1
 
 `2022-08-05`

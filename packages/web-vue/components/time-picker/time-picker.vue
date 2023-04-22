@@ -33,6 +33,9 @@
       :placeholder="computedPlaceholder"
       @clear="onInputClear"
     >
+      <template v-if="$slots.prefix" #prefix>
+        <slot name="prefix"> </slot>
+      </template>
       <template #suffix-icon>
         <slot name="suffix-icon">
           <IconClockCircle />
@@ -86,7 +89,7 @@ import {
 } from '../_utils/date';
 import { isArray, isUndefined } from '../_utils/is';
 import { getPrefixCls } from '../_utils/global-config';
-import Trigger from '../trigger';
+import Trigger, { TriggerProps } from '../trigger';
 import DateInput from '../_components/picker/input.vue';
 import DateRangeInput from '../_components/picker/input-range.vue';
 import IconClockCircle from '../icon/icon-clock-circle';
@@ -290,7 +293,7 @@ export default defineComponent({
      * @en You can pass in the parameters of the `Trigger` component
      * */
     triggerProps: {
-      type: Object as PropType<Record<string, unknown>>,
+      type: Object as PropType<TriggerProps>,
     },
     /**
      * @zh 是否在关闭后销毁 dom 结构
@@ -337,6 +340,17 @@ export default defineComponent({
     'popup-visible-change': (visible: boolean) => true,
     'update:popupVisible': (visible: boolean) => true,
   },
+  /**
+   * @zh 输入框前缀
+   * @en Input box prefix
+   * @slot prefix
+   * @version 2.41.0
+   */
+  /**
+   * @zh 输入框后缀图标
+   * @en Input box suffix icon
+   * @slot suffix-icon
+   */
   /**
    * @zh 额外的页脚
    * @en Extra footer
@@ -588,9 +602,10 @@ export default defineComponent({
       }
     }
 
-    function onClear() {
+    function onClear(e: Event) {
+      e.stopPropagation();
       setPanelValue(undefined);
-      confirm(undefined, true);
+      confirm(undefined, isRange.value);
     }
 
     // 1. 每次打开关闭重新赋值 panelValue

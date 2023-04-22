@@ -19,6 +19,8 @@ description: When users need to select one or more from a group of similar data,
 
 @import ./__demo__/loading.md
 
+@import ./__demo__/header.md
+
 @import ./__demo__/footer.md
 
 @import ./__demo__/border.md
@@ -66,6 +68,7 @@ description: When users need to select one or more from a group of similar data,
 |max-tag-count|In multi-select mode, the maximum number of labels displayed. 0 means unlimited|`number`|`0`||
 |popup-container|Mount container for popup|`string \| HTMLElement`|`-`||
 |bordered|Whether to display the border of the input box|`boolean`|`true`||
+|default-active-first-option|Whether to select the first option by default when there is no value|`boolean`|`true`|2.43.0|
 |popup-visible **(v-model)**|Whether to show the dropdown|`boolean`|`-`||
 |default-popup-visible|Whether the popup is visible by default (uncontrolled mode)|`boolean`|`false`||
 |unmount-on-close|Whether to destroy the element when the dropdown is closed|`boolean`|`false`||
@@ -80,6 +83,7 @@ description: When users need to select one or more from a group of similar data,
 |search-delay|Delay time to trigger search event|`number`|`500`|2.18.0|
 |limit|Maximum number of choices in multiple choice|`number`|`0`|2.18.0|
 |field-names|Customize fields in `SelectOptionData`|`SelectFieldNames`|`-`|2.22.0|
+|scrollbar|Whether to enable virtual scroll bar|`boolean \| ScrollbarProps`|`true`|2.38.0|
 ### `<select>` Events
 
 |Event Name|Description|Parameters|version|
@@ -103,6 +107,7 @@ description: When users need to select one or more from a group of similar data,
 |loading-icon|Loading icon for select box|-|2.16.0|
 |arrow-icon|Arrow icon for select box|-|2.16.0|
 |footer|The footer of the drop-down box|-||
+|header|The header of the drop-down box|-|2.43.0|
 |label|Display content of label|data: `SelectOptionData`||
 |option|Display content of options|data: `SelectOptionData`||
 |empty|Display content when the option is empty|-||

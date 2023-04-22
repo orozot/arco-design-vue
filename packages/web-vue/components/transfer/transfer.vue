@@ -8,9 +8,17 @@
       :data="dataInfo.sourceInfo.data"
       :selected="computedSelected"
       :show-search="showSearch"
+      :show-select-all="showSelectAll"
       :simple="simple"
       @search="handleSearch"
-    />
+    >
+      <template v-if="$slots.source" #default="slotData">
+        <slot name="source" v-bind="slotData" />
+      </template>
+      <template v-if="$slots['source-title']" #title="titleProps">
+        <slot name="source-title" v-bind="titleProps" />
+      </template>
+    </transfer-view>
     <div v-if="!simple" :class="[`${prefixCls}-operations`]">
       <arco-button
         tabindex="-1"
@@ -47,9 +55,17 @@
       :selected="computedSelected"
       :allow-clear="oneWay"
       :show-search="showSearch"
+      :show-select-all="showSelectAll"
       :simple="simple"
       @search="handleSearch"
-    />
+    >
+      <template v-if="$slots.target" #default="slotData">
+        <slot name="target" v-bind="slotData" />
+      </template>
+      <template v-if="$slots['target-title']" #title="titleProps">
+        <slot name="target-title" v-bind="titleProps" />
+      </template>
+    </transfer-view>
   </div>
 </template>
 
@@ -156,6 +172,15 @@ export default defineComponent({
       default: false,
     },
     /**
+     * @zh 是否展示全选勾选框
+     * @en Whether show select all checkbox on the header
+     * @version 2.39.0
+     */
+    showSelectAll: {
+      type: Boolean,
+      default: true,
+    },
+    /**
      * @zh 源选择框和目标选择框的标题
      * @en The title of the source and target selection boxes
      */
@@ -191,6 +216,52 @@ export default defineComponent({
    * @zh 选项
    * @en Option
    * @slot item
+   * @binding {string} value
+   * @binding {string} label
+   */
+  /**
+   * @zh 源面板
+   * @en Source content
+   * @slot source
+   * @binding {TransferItem[]} data
+   * @binding {string[]} selectedKeys
+   * @binding {(value: string[]) => void} onSelect
+   * @version 2.39.0
+   */
+  /**
+   * @zh 目标面板
+   * @en Target content
+   * @slot target
+   * @binding {TransferItem[]} data
+   * @binding {string[]} selectedKeys
+   * @binding {(value: string[]) => void} onSelect
+   * @version 2.39.0
+   */
+  /**
+   * @zh 源标题插槽
+   * @en Source Header
+   * @slot source-title
+   * @binding {number} countTotal
+   * @binding {number} countSelected
+   * @binding {string} searchValue
+   * @binding {boolean} checked
+   * @binding {boolean} indeterminate
+   * @binding {(checked:boolean) => void} onSelectAllChange
+   * @binding {() => void} onClear
+   * @version 2.45.0
+   */
+  /**
+   * @zh 目标标题插槽
+   * @en Target Header
+   * @slot target-title
+   * @binding {number} countTotal
+   * @binding {number} countSelected
+   * @binding {string} searchValue
+   * @binding {boolean} checked
+   * @binding {boolean} indeterminate
+   * @binding {(checked:boolean) => void} onSelectAllChange
+   * @binding {() => void} onClear
+   * @version 2.45.0
    */
   setup(props, { emit, slots }) {
     const { mergedDisabled, eventHandlers } = useFormItem({

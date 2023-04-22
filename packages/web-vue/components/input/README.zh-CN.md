@@ -43,7 +43,7 @@ description: 基本表单组件，并在原生控件基础上进行了功能扩�
 |readonly|是否为只读状态|`boolean`|`false`||
 |error|是否为错误状态|`boolean`|`false`||
 |placeholder|提示文字|`string`|`-`||
-|max-length|输入值得最大长度，errorOnly 属性在 2.12.0 版本添加|`number \| { length: number; errorOnly?: boolean }`|`0`||
+|max-length|输入值的最大长度，errorOnly 属性在 2.12.0 版本添加|`number \| { length: number; errorOnly?: boolean }`|`0`||
 |show-word-limit|是否显示字数统计|`boolean`|`false`||
 |word-length|字符长度的计算方法|`(value: string) => number`|`-`||
 |word-slice|字符截取方法，同 wordLength 一起使用|`(value: string, maxLength: number) => string`|`-`|2.12.0|
@@ -98,7 +98,7 @@ description: 基本表单组件，并在原生控件基础上进行了功能扩�
 |disabled|是否禁用|`boolean`|`false`||
 |size|输入框大小|`'mini' \| 'small' \| 'medium' \| 'large'`|`'medium'`||
 |button-text|搜索按钮的文字，使用后会替换原本的图标|`string`|`-`|2.16.0|
-|button-props|搜索按钮的属性|`object`|`-`||
+|button-props|搜索按钮的属性|`ButtonProps`|`-`||
 ### `<input-search>` Events
 
 |事件名|描述|参数|

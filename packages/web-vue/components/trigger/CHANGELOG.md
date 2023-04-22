@@ -2,6 +2,33 @@
 changelog: true
 ```
 
+## 2.44.7
+
+`2023-04-03`
+
+### 🐛 BugFix
+
+- Fix the problem of reporting errors in iframe ([#2300](https://github.com/arco-design/arco-design-vue/pull/2300))
+
+
+## 2.44.6
+
+`2023-03-31`
+
+### 💎 Enhancement
+
+- Optimize the problem that the popup position is not accurate in ShadowRoot ([#2273](https://github.com/arco-design/arco-design-vue/pull/2273))
+
+
+## 2.38.0-beta.2
+
+`2022-10-21`
+
+### 🐛 BugFix
+
+- Fix the problem of wrong arrow positioning in windows ([#1480](https://github.com/arco-design/arco-design-vue/pull/1480))
+
+
 ## 2.35.1
 
 `2022-08-19`

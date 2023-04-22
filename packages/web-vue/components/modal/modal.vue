@@ -4,9 +4,9 @@
       <div
         v-if="!unmountOnClose || computedVisible || mounted"
         v-show="computedVisible || mounted"
-        v-bind="$attrs"
         :class="`${prefixCls}-container`"
         :style="{ zIndex }"
+        v-bind="$attrs"
       >
         <transition :name="maskAnimationName" appear>
           <div
@@ -115,7 +115,7 @@ import { getPrefixCls } from '../_utils/global-config';
 import { MessageType } from '../_utils/constant';
 import ClientOnly from '../_components/client-only';
 import IconHover from '../_components/icon-hover.vue';
-import ArcoButton from '../button';
+import ArcoButton, { ButtonProps } from '../button';
 import IconClose from '../icon/icon-close';
 import IconInfoCircleFill from '../icon/icon-info-circle-fill';
 import IconCheckCircleFill from '../icon/icon-check-circle-fill';
@@ -271,14 +271,14 @@ export default defineComponent({
      * @en Props of confirm button
      */
     okButtonProps: {
-      type: Object,
+      type: Object as PropType<ButtonProps>,
     },
     /**
      * @zh 取消按钮的Props
      * @en Props of cancel button
      */
     cancelButtonProps: {
-      type: Object,
+      type: Object as PropType<ButtonProps>,
     },
     /**
      * @zh 是否展示页脚部分

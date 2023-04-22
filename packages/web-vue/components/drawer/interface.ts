@@ -1,5 +1,5 @@
 import { AppContext, CSSProperties } from 'vue';
-import { ButtonProps } from '../button/interface';
+import { ButtonProps } from '../button';
 import { RenderContent } from '../_utils/types';
 
 export interface DrawerConfig {
@@ -122,8 +122,20 @@ export interface DrawerConfig {
    */
   onClose?: () => void;
   /**
-   * @zh 是否支持 ESC 键关闭对话框
-   * @en Whether to support the ESC key to close the dialog
+   * @zh 抽屉打开前触发
+   * @en Triggered before drawer is opened
+   * @version 2.43.0
+   */
+  onBeforeOpen?: () => void;
+  /**
+   * @zh 抽屉关闭前触发
+   * @en Triggered before drawer is closed
+   * @version 2.43.0
+   */
+  onBeforeClose?: () => void;
+  /**
+   * @zh 是否支持 ESC 键关闭抽屉
+   * @en Whether to support the ESC key to close the drawer
    * @version 2.15.0
    * @defaultValue true
    */
@@ -151,17 +163,39 @@ export interface DrawerConfig {
   hideCancel?: boolean;
 }
 
+export type DrawerUpdateConfig = Omit<
+  DrawerConfig,
+  | 'title'
+  | 'content'
+  | 'onOk'
+  | 'onCancel'
+  | 'onBeforeOk'
+  | 'onBeforeCancel'
+  | 'onOpen'
+  | 'onClose'
+  | 'onBeforeOpen'
+  | 'onBeforeClose'
+  | 'header'
+  | 'footer'
+>;
+
 export interface DrawerReturn {
   /**
-   * @zh 关闭对话框
+   * @zh 关闭抽屉
    * @en Close Drawer
    */
   close: () => void;
+  /**
+   * @zh 更新抽屉
+   * @en Update Drawer
+   * @version 2.43.2
+   */
+  update: (config: DrawerUpdateConfig) => void;
 }
 
 export interface DrawerMethod {
   /**
-   * @zh 打开对话框
+   * @zh 打开抽屉
    * @en Open drawer
    */
   open: (config: DrawerConfig, appContext?: AppContext) => DrawerReturn;

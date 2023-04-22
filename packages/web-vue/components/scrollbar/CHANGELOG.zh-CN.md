@@ -2,6 +2,24 @@
 changelog: true
 ```
 
+## 2.42.1
+
+`2023-02-03`
+
+### 🐛 问题修复
+
+- 修复emits 的 ts 声明错误 ([#2077](https://github.com/arco-design/arco-design-vue/pull/2077))
+
+
+## 2.40.0
+
+`2022-12-09`
+
+### 🆕 新增功能
+
+- 增加 scrollLeft 和 scrollTop 方法 ([#1909](https://github.com/arco-design/arco-design-vue/pull/1909))
+
+
 ## 2.37.2
 
 `2022-09-21`

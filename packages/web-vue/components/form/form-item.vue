@@ -21,8 +21,10 @@
       <FormItemLabel
         :required="hideAsterisk ? false : isRequired"
         :show-colon="showColon"
+        :asterisk-position="asteriskPosition"
         :component="labelComponent"
         :attrs="labelAttrs"
+        :tooltip="tooltip"
       >
         <slot v-if="$slots.label || label" name="label">{{ label }}</slot>
       </FormItemLabel>
@@ -98,6 +100,7 @@ import { getPrefixCls } from '../_utils/global-config';
 import { getValueByPath, setValueByPath } from '../_utils/get-value-by-path';
 import { Data } from '../_utils/types';
 import { getFinalValidateMessage, getFinalValidateStatus } from './utils';
+import { useI18n } from '../locale';
 
 export default defineComponent({
   name: 'FormItem',
@@ -121,6 +124,14 @@ export default defineComponent({
      * @en Label text
      */
     label: String,
+    /**
+     * @zh 提示内容
+     * @en Tooltip text
+     * @version 2.41.0
+     */
+    tooltip: {
+      type: String,
+    },
     /**
      * @zh 是否显示冒号
      * @en Whether to show a colon
@@ -162,6 +173,16 @@ export default defineComponent({
     required: {
       type: Boolean,
       default: false,
+    },
+    /**
+     * @zh 可选择将星号置于 label 前/后
+     * @en Optionally place an asterisk before/after the label
+     * @values 'start', 'end'
+     * @version 2.41.0
+     */
+    asteriskPosition: {
+      type: String,
+      default: 'start',
     },
     /**
      * @zh 表单项校验规则（优先级高于 form 的 rules）
@@ -316,6 +337,7 @@ export default defineComponent({
     const { field } = toRefs(props);
     const formCtx = inject<Partial<FormContext>>(formInjectionKey, {});
     const { autoLabelWidth, layout } = toRefs(formCtx);
+    const { i18nMessage } = useI18n();
 
     const mergedLabelCol = computed(() => {
       const colProps = { ...(props.labelColProps ?? formCtx.labelColProps) };
@@ -365,7 +387,7 @@ export default defineComponent({
     const computedValidateStatus = computed(
       () => props.validateStatus ?? finalStatus.value
     );
-    const isError = computed(() => finalStatus.value === 'error');
+    const isError = computed(() => computedValidateStatus.value === 'error');
 
     const mergedRules = computed(() => {
       const baseRules = ([] as FieldRule[]).concat(
@@ -427,14 +449,17 @@ export default defineComponent({
 
       const schema = new Schema(
         {
-          [_field]: rules.map((rule) => {
+          [_field]: rules.map(({ ...rule }) => {
             if (!rule.type && !rule.validator) {
               rule.type = 'string';
             }
             return rule;
           }),
         },
-        { ignoreEmptyString: true }
+        {
+          ignoreEmptyString: true,
+          validateMessages: i18nMessage.value.form?.validateMessages,
+        }
       );
 
       return new Promise((resolve) => {

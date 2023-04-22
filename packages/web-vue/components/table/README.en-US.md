@@ -91,26 +91,27 @@ description: It is used for data collection, display, analysis and processing, a
 |summary|Show footer summary row|`boolean\| ((params: {    columns: TableColumnData[];    data: TableData[];  }) => TableData[])`|`-`|2.21.0|
 |summary-text|The first column of text in the summary line|`string`|`'Summary'`|2.21.0|
 |summary-span-method|Cell Merge Method for Summarizing Rows|`(data: {  record: TableData;  column: TableColumnData \| TableOperationColumn;  rowIndex: number;  columnIndex: number;}) => { rowspan?: number; colspan?: number } \| void`|`-`|2.21.0|
-|selected-keys|Selected row (controlled mode) takes precedence over `rowSelection`|`BaseType[]`|`-`|2.25.0|
-|default-selected-keys|The selected row by default (uncontrolled mode) takes precedence over `rowSelection`|`BaseType[]`|`-`|2.25.0|
-|expanded-keys|Displayed Expanded Row, Subtree (Controlled Mode) takes precedence over `expandable`|`BaseType[]`|`-`|2.25.0|
-|default-expanded-keys|Expand row, Subtree displayed by default (Uncontrolled mode) takes precedence over `expandable`|`BaseType[]`|`-`|2.25.0|
+|selected-keys|Selected row (controlled mode) takes precedence over `rowSelection`|`(string \| number)[]`|`-`|2.25.0|
+|default-selected-keys|The selected row by default (uncontrolled mode) takes precedence over `rowSelection`|`(string \| number)[]`|`-`|2.25.0|
+|expanded-keys|Displayed Expanded Row, Subtree (Controlled Mode) takes precedence over `expandable`|`(string \| number)[]`|`-`|2.25.0|
+|default-expanded-keys|Expand row, Subtree displayed by default (Uncontrolled mode) takes precedence over `expandable`|`(string \| number)[]`|`-`|2.25.0|
 |default-expand-all-rows|Whether to expand all rows by default|`boolean`|`false`|2.25.0|
 |sticky-header|Whether to open the sticky header|`boolean\|number`|`false`|2.30.0|
+|scrollbar|Whether to enable virtual scroll bar|`boolean \| ScrollbarProps`|`true`|2.38.0|
 ### `<table>` Events
 
 |Event Name|Description|Parameters|version|
 |---|---|---|:---|
-|expand|Triggered when a row is clicked to expand|rowKey: `BaseType`<br>record: `TableData`||
-|expanded-change|Triggered when the expanded data row changes|rowKeys: `BaseType[]`||
-|select|Triggered when the row selector is clicked|rowKeys: `BaseType[]`<br>rowKey: `BaseType`<br>record: `TableData`||
+|expand|Triggered when a row is clicked to expand|rowKey: `string \| number`<br>record: `TableData`||
+|expanded-change|Triggered when the expanded data row changes|rowKeys: `(string \| number)[]`||
+|select|Triggered when the row selector is clicked|rowKeys: `string \| number[]`<br>rowKey: `string \| number`<br>record: `TableData`||
 |select-all|Triggered when the select all selector is clicked|checked: `boolean`||
-|selection-change|Triggered when the selected data row changes|rowKeys: `BaseType[]`||
+|selection-change|Triggered when the selected data row changes|rowKeys: `(string \| number)[]`||
 |sorter-change|Triggered when the collation changes|dataIndex: `string`<br>direction: `string`||
 |filter-change|Triggered when the filter options are changed|dataIndex: `string`<br>filteredValues: `string[]`||
 |page-change|Triggered when the table pagination changes|page: `number`||
 |page-size-change|Triggered when the number of data per page of the table changes|pageSize: `number`||
-|change||data: `TableData[]`<br>extra: `TableChangeExtra`||
+|change|Triggered when table data changes|data: `TableData[]`<br>extra: `TableChangeExtra`<br>currentData: `TableData[]`|2.40.0 增加 currentData|
 |cell-click|Triggered when a cell is clicked|record: `TableData`<br>column: `TableColumnData`<br>ev: `Event`||
 |row-click|Triggered when row data is clicked|record: `TableData`<br>ev: `Event`||
 |header-click|Triggered when the header data is clicked|column: `TableColumnData`<br>ev: `Event`||
@@ -120,9 +121,9 @@ description: It is used for data collection, display, analysis and processing, a
 |Method|Description|Parameters|Return|version|
 |---|---|---|:---:|:---|
 |selectAll|Set select all state|checked: ` boolean `|-|2.22.0|
-|select|Set row selector state|rowKey: ` BaseType \| BaseType[] `<br>checked: ` boolean `|-|2.31.0|
+|select|Set row selector state|rowKey: ` string \| number \| (string \| number)[] `<br>checked: ` boolean `|-|2.31.0|
 |expandAll|Set all expanded state|checked: ` boolean `|-|2.31.0|
-|expand|Set select all state|rowKey: ` BaseType \| BaseType[] `<br>checked: ` boolean `|-|2.31.0|
+|expand|Set select all state|rowKey: ` string \| number \| (string \| number)[] `<br>checked: ` boolean `|-|2.31.0|
 |resetFilters|Reset the filter for columns|dataIndex: ` string \| string[] `|-|2.31.0|
 |clearFilters|Clear the filter for columns|dataIndex: ` string \| string[] `|-|2.31.0|
 |resetSorters|Reset the order of columns|-|-|2.31.0|
@@ -289,7 +290,7 @@ type Sorter = { filed: string; direction: 'ascend' | 'descend' } | Record<string
 |title|Column title|`string`|`-`||
 |width|Column width|`number`|`-`||
 |fixed|Is it fixed|`boolean`|`false`||
-|checkStrictly|Whether to enable strict selection mode (default: true)|`boolean`|`false`|2.29.0|
+|checkStrictly|Whether to enable strict selection mode|`boolean`|`true`|2.29.0|
 |onlyCurrent|Whether to display only the keys of the current page (clear keys when switching paging)|`boolean`|`false`|2.32.0|
 
 

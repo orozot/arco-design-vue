@@ -635,6 +635,8 @@ export default defineComponent({
         ? key2TreeNode.value.get(targetKey)
         : undefined;
       const publicCheckedKeys = getPublicCheckedKeys(newCheckedKeys);
+      emit('update:checkedKeys', publicCheckedKeys);
+      emit('update:halfCheckedKeys', newIndeterminateKeys);
       emit('check', publicCheckedKeys, {
         checked: targetChecked,
         node: targetNode?.treeNodeData,
@@ -643,8 +645,6 @@ export default defineComponent({
         halfCheckedNodes: getNodes(newIndeterminateKeys) as TreeNodeData[],
         e: event,
       });
-      emit('update:checkedKeys', publicCheckedKeys);
-      emit('update:halfCheckedKeys', newIndeterminateKeys);
     }
 
     function emitSelectEvent(options: {
@@ -657,13 +657,13 @@ export default defineComponent({
       const targetNode = targetKey
         ? key2TreeNode.value.get(targetKey)
         : undefined;
+      emit('update:selectedKeys', newSelectedKeys);
       emit('select', newSelectedKeys, {
         selected: targetSelected,
         node: targetNode?.treeNodeData,
         selectedNodes: getNodes(newSelectedKeys) as TreeNodeData[],
         e: event,
       });
-      emit('update:selectedKeys', newSelectedKeys);
     }
 
     function emitExpandEvent(options: {

@@ -1,6 +1,6 @@
 {
   "name": "@arco-design/web-vue",
-  "version": "2.37.4",
+  "version": "2.45.2",
   "description": "Arco Design Vue 2.0: A Vue.js 3 UI Library",
   "keywords": [
     "arco",
@@ -44,6 +44,7 @@
     "dtsgen:icon": "arco-vue-scripts dtsgen 'components/icon/**/*.{ts,tsx,vue}' -o 'components/icon/@types'",
     "test": "arco-vue-scripts test --coverage",
     "test:update": "arco-vue-scripts test --coverage -u",
+    "test:screenshot": "arco-vue-scripts test:screenshot -o ./__screenshots__/",
     "changelog": "arco-vue-scripts changelog",
     "lint-staged": "npx lint-staged"
   },
@@ -93,7 +94,7 @@
   "dependencies": {
     "@arco-design/color": "^0.4.0",
     "b-tween": "^0.3.3",
-    "b-validate": "^1.3.1",
+    "b-validate": "^1.4.4",
     "compute-scroll-into-view": "^1.0.17",
     "dayjs": "^1.10.3",
     "number-precision": "^1.5.0",

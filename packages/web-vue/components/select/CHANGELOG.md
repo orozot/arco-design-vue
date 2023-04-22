@@ -2,6 +2,80 @@
 changelog: true
 ```
 
+## 2.45.2
+
+`2023-04-21`
+
+### 💅 Style
+
+- Fix the inconsistent line-height and height of select-view-input ([#2346](https://github.com/arco-design/arco-design-vue/pull/2346))
+
+
+## 2.44.6
+
+`2023-03-31`
+
+### 🐛 BugFix
+
+- Fix the problem that setting modelValue to undefined is invalid ([#2285](https://github.com/arco-design/arco-design-vue/pull/2285))
+
+
+## 2.44.3
+
+`2023-03-24`
+
+### 🐛 BugFix
+
+- fix blank dropdown caused by dynamic slot options ([#2265](https://github.com/arco-design/arco-design-vue/pull/2265))
+- Automatic creation of empty string entries is not allowed. Dropdown option with empty string, set value to `undefined` when empty ([#2257](https://github.com/arco-design/arco-design-vue/pull/2257))
+
+
+## 2.44.2
+
+`2023-03-17`
+
+### 🐛 BugFix
+
+- drop-down option value supports empty string ([#2190](https://github.com/arco-design/arco-design-vue/pull/2190))
+
+
+## 2.43.0
+
+`2023-02-10`
+
+### 🆕 Feature
+
+- Added `defaultActiveFirstOption` property ([#2107](https://github.com/arco-design/arco-design-vue/pull/2107))
+- add header slot ([#2099](https://github.com/arco-design/arco-design-vue/pull/2099))
+
+
+## 2.41.0
+
+`2022-12-30`
+
+### 💅 Style
+
+- Unify the suffix icon of `select` component for single selection and multi-selection as `arrow-icon`. ([#2005](https://github.com/arco-design/arco-design-vue/pull/2005))
+
+
+## 2.38.0
+
+`2022-10-28`
+
+### 🐛 BugFix
+
+- Fix formatLabel error when there is no data ([#1797](https://github.com/arco-design/arco-design-vue/pull/1797))
+
+
+## 2.38.0-beta.1
+
+`2022-10-14`
+
+### 💎 Enhancement
+
+- Increase the cache of selected items, and optimize the label display problem during remote search ([#1731](https://github.com/arco-design/arco-design-vue/pull/1731))
+
+
 ## 2.37.4
 
 `2022-09-30`

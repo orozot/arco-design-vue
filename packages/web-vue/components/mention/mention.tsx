@@ -131,6 +131,20 @@ export default defineComponent({
      * @version 2.23.0
      */
     'clear': (ev: Event) => true,
+    /**
+     * @zh 文本框获取焦点时触发
+     * @en Emitted when the text box gets focus
+     * @param {FocusEvent} ev
+     * @version 2.42.0
+     */
+    'focus': (ev: FocusEvent) => true,
+    /**
+     * @zh 文本框失去焦点时触发
+     * @en Emitted when the text box loses focus
+     * @param {FocusEvent} ev
+     * @version 2.42.0
+     */
+    'blur': (ev: FocusEvent) => true,
   },
   /**
    * @zh 选项内容
@@ -274,6 +288,7 @@ export default defineComponent({
         optionRefs,
         onSelect: handleSelect,
         onPopupVisibleChange: handlePopupVisibleChange,
+        enterToOpen: false,
       });
 
     const mirrorStyle = ref();
@@ -342,6 +357,13 @@ export default defineComponent({
       }
     });
 
+    const onFocus = (ev: FocusEvent) => {
+      emit('focus', ev);
+    };
+    const onBlur = (ev: FocusEvent) => {
+      emit('blur', ev);
+    };
+
     const render = () => {
       if (props.type === 'textarea') {
         return (
@@ -354,6 +376,8 @@ export default defineComponent({
                 modelValue={computedValue.value}
                 onInput={handleInput}
                 onClear={handleClear}
+                onFocus={onFocus}
+                onBlur={onBlur}
                 // @ts-ignore
                 onKeydown={handleKeyDown}
               />
@@ -407,6 +431,8 @@ export default defineComponent({
             disabled={mergedDisabled.value}
             onInput={handleInput}
             onClear={handleClear}
+            onFocus={onFocus}
+            onBlur={onBlur}
             // @ts-ignore
             onKeydown={handleKeyDown}
           />
@@ -414,6 +440,32 @@ export default defineComponent({
       );
     };
 
-    return render;
+    return {
+      inputRef,
+      render,
+    };
+  },
+  methods: {
+    /**
+     * @zh 使输入框获取焦点
+     * @en Make the input box focus
+     * @public
+     * @version 2.24.0
+     */
+    focus() {
+      (this.inputRef as HTMLInputElement)?.focus();
+    },
+    /**
+     * @zh 使输入框失去焦点
+     * @en Make the input box lose focus
+     * @public
+     * @version 2.24.0
+     */
+    blur() {
+      (this.inputRef as HTMLInputElement)?.blur();
+    },
+  },
+  render() {
+    return this.render();
   },
 });

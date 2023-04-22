@@ -195,6 +195,15 @@ export default defineComponent({
       default: true,
     },
     /**
+     * @zh 照片墙是否显示预览按钮
+     * @en Whether to display the preview button in picture-card
+     * @version 2.42.0
+     */
+    showPreviewButton: {
+      type: Boolean,
+      default: true,
+    },
+    /**
      * @zh 是否在 `<a>` 链接上添加 download 属性
      * @en Whether to add download attribute to `<a>` link
      * @version 2.11.0
@@ -254,15 +263,17 @@ export default defineComponent({
       default: false,
     },
     /**
-     * @zh 上传图片前触发
-     * @en Trigger before uploading a picture
+     * @zh 上传文件前触发
+     * @en Trigger before uploading a file
      */
     onBeforeUpload: {
-      type: Function as PropType<(file: File) => Promise<boolean | File>>,
+      type: Function as PropType<
+        (file: File) => boolean | Promise<boolean | File>
+      >,
     },
     /**
-     * @zh 移除图片前触发
-     * @en Triggered before removing the picture
+     * @zh 移除文件前触发
+     * @en Triggered before removing the file
      */
     onBeforeRemove: {
       type: Function as PropType<(fileItem: FileItem) => Promise<boolean>>,
@@ -278,22 +289,22 @@ export default defineComponent({
   emits: {
     'update:fileList': (fileList: FileItem[]) => true,
     /**
-     * @zh 上传的图片超出限制后触发
-     * @en Triggered when the uploaded image exceeds the limit
+     * @zh 上传的文件超出限制后触发
+     * @en Triggered when the uploaded file exceeds the limit
      * @param {FileItem[]} fileList
      * @param {File[]} files
      */
     'exceedLimit': (fileList: FileItem[], files: File[]) => true,
     /**
-     * @zh 上传的图片状态发生改变时触发
-     * @en Triggered when the status of the uploaded image changes
+     * @zh 上传的文件状态发生改变时触发
+     * @en Triggered when the status of the uploaded file changes
      * @param {FileItem[]} fileList
      * @param {fileItem} fileItem
      */
     'change': (fileList: FileItem[], fileItem: FileItem) => true,
     /**
-     * @zh 上传中的图片进度改变时触发
-     * @en Triggered when the uploading image progress changes
+     * @zh 上传中的文件进度改变时触发
+     * @en Triggered when the uploading file progress changes
      * @param {fileItem} fileItem
      * @param {ProgressEvent} ev
      */
@@ -390,6 +401,13 @@ export default defineComponent({
    * @binding {FileItem} fileItem
    * @version 2.23.0
    */
+  /**
+   * @zh 上传列表额外按钮
+   * @en Extra button
+   * @slot extra-button
+   * @binding {FileItem} fileItem
+   * @version 2.43.0
+   */
   setup(props, { emit, slots }) {
     const {
       fileList,
@@ -399,6 +417,7 @@ export default defineComponent({
       showRetryButton,
       showCancelButton,
       showRemoveButton,
+      showPreviewButton,
       imageLoading,
       download,
       showLink,
@@ -559,7 +578,7 @@ export default defineComponent({
     };
 
     const initUpload = async (file: File, index: number) => {
-      const uid = `${Date.now()}${index}`;
+      const uid = `${Date.now()}-${index}`;
 
       const dataURL = isImage(file) ? URL.createObjectURL(file) : undefined;
 
@@ -573,7 +592,7 @@ export default defineComponent({
       });
 
       fileMap.set(uid, fileItem);
-      _fileList.value.push(fileItem);
+      _fileList.value = [..._fileList.value, fileItem];
       updateFileList(fileItem);
 
       if (props.autoUpload) {
@@ -610,7 +629,9 @@ export default defineComponent({
     };
 
     const removeFile = (fileItem: FileItem) => {
-      _fileList.value.splice(_fileList.value.indexOf(fileItem), 1);
+      _fileList.value = _fileList.value.filter((item) => {
+        return item.uid !== fileItem.uid;
+      });
       updateFileList(fileItem);
     };
 
@@ -652,6 +673,7 @@ export default defineComponent({
         showRemoveButton,
         showRetryButton,
         showCancelButton,
+        showPreviewButton,
         showLink,
         imageLoading,
         download,
@@ -774,6 +796,7 @@ export default defineComponent({
       innerSubmit: submit,
       innerAbort: abort,
       innerUpdateFile: updateFile,
+      innerUpload: uploadFiles,
     };
   },
   methods: {
@@ -804,6 +827,16 @@ export default defineComponent({
      */
     updateFile(id: string, file: File) {
       return this.innerUpdateFile(id, file);
+    },
+    /**
+     * @zh 上传文件
+     * @en Upload file
+     * @public
+     * @param {File[]} files
+     * @version 2.41.0
+     */
+    upload(files: File[]) {
+      return this.innerUpload(files);
     },
   },
   render() {

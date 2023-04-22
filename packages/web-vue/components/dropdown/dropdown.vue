@@ -85,6 +85,15 @@ export default defineComponent({
       type: [Boolean, Number],
       default: true,
     },
+    /**
+     * @zh 是否在用户选择后隐藏弹出框
+     * @en Whether to hide popup when the user selects
+     * @version 2.43.0
+     */
+    hideOnSelect: {
+      type: Boolean,
+      default: true,
+    },
   },
   emits: {
     'update:popupVisible': (visible: boolean) => true,
@@ -97,7 +106,7 @@ export default defineComponent({
     /**
      * @zh 用户选择时触发
      * @en Triggered when the user selects
-     * @param {string|number|Record<string, any>|undefined} value
+     * @param {string | number | Record<string, any> | undefined } value
      * @param {Event} ev
      */
     'select': (
@@ -131,7 +140,7 @@ export default defineComponent({
       ev: Event
     ) => {
       emit('select', value, ev);
-      handlePopupVisibleChange(false);
+      props.hideOnSelect && handlePopupVisibleChange(false);
     };
 
     provide(

@@ -29,19 +29,20 @@ description: 页面上的命令过多时，可将备选命令收纳到向下展�
 
 ### `<dropdown>` Props
 
-|参数名|描述|类型|默认值|
-|---|---|---|:---:|
-|popup-visible **(v-model)**|弹出框是否可见|`boolean`|`-`|
-|default-popup-visible|弹出框默认是否可见（非受控模式）|`boolean`|`false`|
-|trigger|触发方式|`'hover' \| 'click' \| 'focus' \| 'contextMenu'`|`'click'`|
-|position|弹出位置|`'top' \| 'tl' \| 'tr' \| 'bottom' \| 'bl' \| 'br'`|`'bottom'`|
-|popup-container|弹出框的挂载容器|`string \| HTMLElement`|`-`|
+|参数名|描述|类型|默认值|版本|
+|---|---|---|:---:|:---|
+|popup-visible **(v-model)**|弹出框是否可见|`boolean`|`-`||
+|default-popup-visible|弹出框默认是否可见（非受控模式）|`boolean`|`false`||
+|trigger|触发方式|`'hover' \| 'click' \| 'focus' \| 'contextMenu'`|`'click'`||
+|position|弹出位置|`'top' \| 'tl' \| 'tr' \| 'bottom' \| 'bl' \| 'br'`|`'bottom'`||
+|popup-container|弹出框的挂载容器|`string \| HTMLElement`|`-`||
+|hide-on-select|是否在用户选择后隐藏弹出框|`boolean`|`true`|2.43.0|
 ### `<dropdown>` Events
 
 |事件名|描述|参数|
 |---|---|---|
 |popup-visible-change|下拉框显示状态发生改变时触发|visible: `boolean`|
-|select|用户选择时触发|value: `union`<br>ev: `Event`|
+|select|用户选择时触发|value: `string \| number \| Record<string, any> \| undefined `<br>ev: `Event`|
 ### `<dropdown>` Slots
 
 |插槽名|描述|参数|版本|
@@ -125,7 +126,8 @@ description: 页面上的命令过多时，可将备选命令收纳到向下展�
 |disabled|是否禁用|`boolean`|`false`|
 |type|按钮类型|`string`|`-`|
 |size|按钮大小|`string`|`-`|
-|button-props|按钮属性|`object`|`-`|
+|button-props|按钮属性|`ButtonProps`|`-`|
+|hide-on-select|是否在用户选择后隐藏弹出框|`boolean`|`true`|
 ### `<dropdown-button>` Events
 
 |事件名|描述|参数|

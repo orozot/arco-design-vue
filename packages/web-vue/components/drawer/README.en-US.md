@@ -37,8 +37,8 @@ description: A drawer-like panel that slides out from the side of the screen aft
 |ok-text|The content of the ok button|`string`|`-`||
 |cancel-text|The content of the cancel button|`string`|`-`||
 |ok-loading|Whether the ok button is in the loading state|`boolean`|`false`||
-|ok-button-props|Props of confirm button|`object`|`-`|2.9.0|
-|cancel-button-props|Props of cancel button|`object`|`-`|2.9.0|
+|ok-button-props|Props of confirm button|`ButtonProps`|`-`|2.9.0|
+|cancel-button-props|Props of cancel button|`ButtonProps`|`-`|2.9.0|
 |unmount-on-close|Whether to uninstall the node when close|`boolean`|`false`|2.12.0|
 |width|The width of the drawer (only available when placement is right, left)|`number\|string`|`250`||
 |height|The height of the drawer (only available when placement is top, bottom)|`number\|string`|`250`||
@@ -47,17 +47,20 @@ description: A drawer-like panel that slides out from the side of the screen aft
 |on-before-ok|The callback function before the ok event is triggered. If false is returned, subsequent events will not be triggered, and done can also be used to close asynchronously.|`(  done: (closed: boolean) => void) => void \| boolean \| Promise<void \| boolean>`|`-`||
 |on-before-cancel|The callback function before the cancel event is triggered. If it returns false, no subsequent events will be triggered.|`() => boolean`|`-`||
 |esc-to-close|Whether to support the ESC key to close the dialog|`boolean`|`true`|2.15.0|
+|render-to-body|Whether the drawer is mounted under the `body` element|`boolean`|`true`||
 |header|Whether to display high-quality content|`boolean`|`true`|2.33.0|
 |footer|Whether to display the bottom content|`boolean`|`true`|2.11.0|
 |hide-cancel|Whether to hide the cancel button|`boolean`|`false`|2.19.0|
 ### `<drawer>` Events
 
-|Event Name|Description|Parameters|
-|---|---|---|
-|ok|Triggered when the OK button is clicked|-|
-|cancel|Triggered when the cancel or close button is clicked|-|
-|open|Triggered after the drawer is opened (the animation ends)|-|
-|close|Triggered when the drawer is closed (the animation ends)|-|
+|Event Name|Description|Parameters|version|
+|---|---|---|:---|
+|ok|Triggered when the OK button is clicked|-||
+|cancel|Triggered when the cancel or close button is clicked|-||
+|open|Triggered after the drawer is opened (the animation ends)|-||
+|close|Triggered when the drawer is closed (the animation ends)|-||
+|before-open|Triggered before drawer is opened|-|2.43.0|
+|before-close|Triggered before drawer is closed|-|2.43.0|
 ### `<drawer>` Slots
 
 |Slot Name|Description|Parameters|version|
@@ -112,7 +115,9 @@ Drawer._context = app._context;
 |onBeforeCancel|The callback function before the cancel event is triggered. If it returns false, no subsequent events will be triggered.|`() => boolean`|`-`||
 |onOpen|Triggered after the drawer is opened (the animation ends)|`() => void`|`-`||
 |onClose|Triggered when the drawer is closed (the animation ends)|`() => void`|`-`||
-|escToClose|Whether to support the ESC key to close the dialog|`boolean`|`true`|2.15.0|
+|onBeforeOpen|Triggered before drawer is opened|`() => void`|`-`|2.43.0|
+|onBeforeClose|Triggered before drawer is closed|`() => void`|`-`|2.43.0|
+|escToClose|Whether to support the ESC key to close the drawer|`boolean`|`true`|2.15.0|
 |header|Whether to display high-quality content|`boolean \| RenderContent`|`true`|2.33.0|
 |footer|Whether to display the bottom content|`boolean \| RenderContent`|`true`|2.11.0|
 |hideCancel|Whether to hide the cancel button|`boolean`|`false`|2.19.0|
@@ -121,9 +126,10 @@ Drawer._context = app._context;
 
 ### DrawerReturn
 
-|Name|Description|Type|Default|
-|---|---|---|:---:|
-|close|Close Drawer|`() => void`|`-`|
+|Name|Description|Type|Default|version|
+|---|---|---|:---:|:---|
+|close|Close Drawer|`() => void`|`-`||
+|update|Update Drawer|`(config: DrawerUpdateConfig) => void`|`-`|2.43.2|
 
 
 

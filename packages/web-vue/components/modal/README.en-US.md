@@ -49,8 +49,8 @@ description: Open a floating layer on the current page to carry related operatio
 |ok-text|The content of the confirm button|`string`|`-`||
 |cancel-text|The content of the cancel button|`string`|`-`||
 |ok-loading|Whether the confirm button is in the loading state|`boolean`|`false`||
-|ok-button-props|Props of confirm button|`object`|`-`||
-|cancel-button-props|Props of cancel button|`object`|`-`||
+|ok-button-props|Props of confirm button|`ButtonProps`|`-`||
+|cancel-button-props|Props of cancel button|`ButtonProps`|`-`||
 |footer|Whether to show the footer|`boolean`|`true`||
 |render-to-body|Whether the modal is mounted under the `body` element|`boolean`|`true`||
 |popup-container|Mount container for modal|`string \| HTMLElement`|`'body'`||
@@ -111,19 +111,19 @@ Modal._context = app._context;
 |title|Title|`RenderContent`|`-`||
 |content|Content|`RenderContent`|`-`||
 |footer|Footer|`boolean \| RenderContent`|`true`||
-|closable|Whether to show the close button|`boolean`|`false`||
+|closable|Whether to show the close button|`boolean`|`true`||
 |okText|The content of the confirm button|`string`|`-`||
 |cancelText|The content of the cancel button|`string`|`-`||
-|okButtonProps|Props of confirm button|`any`|`-`||
-|cancelButtonProps|Props of cancel button|`any`|`-`||
+|okButtonProps|Props of confirm button|`ButtonProps`|`-`||
+|cancelButtonProps|Props of cancel button|`ButtonProps`|`-`||
 |okLoading|Whether the confirm button is in the loading state|`boolean`|`false`||
 |hideCancel|Whether to hide the cancel button|`boolean`|`false`||
-|mask|Whether to show the mask|`boolean`|`false`||
+|mask|Whether to show the mask|`boolean`|`true`||
 |simple|Whether to enable simple mode|`boolean`|`false`||
-|maskClosable|Whether to close the modal when click the mask|`boolean`|`false`||
+|maskClosable|Whether to close the modal when click the mask|`boolean`|`true`||
 |maskStyle|Mask style|`CSSProperties`|`-`||
-|alignCenter|Whether the dialog box is displayed in the center|`boolean`|`false`||
-|escToClose|Whether to support the ESC key to close the dialog|`boolean`|`false`|2.15.0|
+|alignCenter|Whether the dialog box is displayed in the center|`boolean`|`true`||
+|escToClose|Whether to support the ESC key to close the dialog|`boolean`|`true`|2.15.0|
 |draggable|Whether to support drag|`boolean`|`false`|2.19.0|
 |fullscreen|Whether to enable full screen|`boolean`|`false`|2.19.0|
 |onOk|Callback function for clicking the OK button|`() => void`|`-`||
@@ -136,9 +136,9 @@ Modal._context = app._context;
 |onBeforeClose|Triggered before dialog is closed|`() => void`|`-`|2.16.0|
 |width|The width of the dialog box, if not set, the width value in the style will be used|`number \| string`|`-`|2.12.0|
 |top|The height from the top of the dialog box. It does not take effect when the center display is turned on.|`number \| string`|`-`|2.12.0|
-|titleAlign|horizontal alignment of the title|`'start' \| 'center'`|`-`|2.17.0|
-|renderToBody|Whether the modal is mounted under the `body` element|`boolean`|`false`||
-|popupContainer|Mount container for modal|`string \| HTMLElement`|`-`||
+|titleAlign|horizontal alignment of the title|`'start' \| 'center'`|`'center'`|2.17.0|
+|renderToBody|Whether the modal is mounted under the `body` element|`boolean`|`true`||
+|popupContainer|Mount container for modal|`string \| HTMLElement`|`'body'`||
 |modalClass|The classname of the modal|`string \| any[]`|`-`||
 |modalStyle|Modal style|`CSSProperties`|`-`||
 |maskAnimationName|Mask layer animation name|`string`|`-`|2.24.0|
@@ -148,9 +148,10 @@ Modal._context = app._context;
 
 ### ModalReturn
 
-|Name|Description|Type|Default|
-|---|---|---|:---:|
-|close|Close Modal|`() => void`|`-`|
+|Name|Description|Type|Default|version|
+|---|---|---|:---:|:---|
+|close|Close Modal|`() => void`|`-`||
+|update|Update Modal|`(config: ModalUpdateConfig) => void`|`-`|2.43.2|
 
 
 

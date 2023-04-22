@@ -2,6 +2,51 @@
 changelog: true
 ```
 
+## 2.44.2
+
+`2023-03-17`
+
+### 🐛 BugFix
+
+- fix issue with content modification at maximum value using non-input method ([#2188](https://github.com/arco-design/arco-design-vue/pull/2188))
+
+
+## 2.41.0
+
+`2022-12-30`
+
+### 🐛 BugFix
+
+- Fix the problem that the custom calculation character length will not be limited by `max-length` ([#1942](https://github.com/arco-design/arco-design-vue/pull/1942))
+
+
+## 2.40.1
+
+`2022-12-23`
+
+### 🐛 BugFix
+
+- Fix `change` event trigger logic problem ([#1990](https://github.com/arco-design/arco-design-vue/pull/1990))
+
+
+## 2.39.2
+
+`2022-12-02`
+
+### 🐛 BugFix
+
+- Fix change event triggering issue and clear clearing issue ([#1912](https://github.com/arco-design/arco-design-vue/pull/1912))
+
+
+## 2.38.1
+
+`2022-11-04`
+
+### 🐛 BugFix
+
+- Fix the problem of component cursor reporting error in some scenarios ([#1820](https://github.com/arco-design/arco-design-vue/pull/1820))
+
+
 ## 2.37.3
 
 `2022-09-23`

@@ -9,7 +9,7 @@ import {
   watch,
 } from 'vue';
 import ArcoInput from '../input';
-import Trigger from '../trigger';
+import Trigger, { TriggerProps } from '../trigger';
 import { getPrefixCls } from '../_utils/global-config';
 import {
   SelectOptionInfo,
@@ -94,7 +94,7 @@ export default defineComponent({
      * @version 2.14.0
      */
     triggerProps: {
-      type: Object,
+      type: Object as PropType<TriggerProps>,
     },
     /**
      * @zh 是否允许清空输入框
@@ -283,7 +283,7 @@ export default defineComponent({
       );
     };
 
-    return () => (
+    const render = () => (
       <Trigger
         v-slots={{ content: renderDropdown }}
         trigger="focus"
@@ -313,5 +313,33 @@ export default defineComponent({
         />
       </Trigger>
     );
+
+    return {
+      inputRef,
+      render,
+    };
+  },
+  methods: {
+    /**
+     * @zh 使输入框获取焦点
+     * @en Make the input box focus
+     * @public
+     * @version 2.40.0
+     */
+    focus() {
+      (this.inputRef as HTMLInputElement)?.focus();
+    },
+    /**
+     * @zh 使输入框失去焦点
+     * @en Make the input box lose focus
+     * @public
+     * @version 2.40.0
+     */
+    blur() {
+      (this.inputRef as HTMLInputElement)?.blur();
+    },
+  },
+  render() {
+    return this.render();
   },
 });

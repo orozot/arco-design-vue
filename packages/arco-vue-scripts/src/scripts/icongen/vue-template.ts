@@ -14,7 +14,7 @@ export const getIconVue = ({
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, CSSProperties } from 'vue';
 import { getPrefixCls } from '../../_utils/global-config';
 import { isNumber } from '../../_utils/is';
 
@@ -45,7 +45,10 @@ export default defineComponent({
     rotate: Number,
     spin: Boolean
   },
-  setup(props) {
+  emits: {
+    click: (ev: MouseEvent) => true,
+  },
+  setup(props, { emit }) {
     const prefixCls = getPrefixCls('icon');
     const cls = computed(() => [prefixCls, \`\${prefixCls}-${name.replace('icon-', '')}\`, { [\`\${prefixCls}-spin\`]: props.spin }]);
     const innerStyle = computed(() => {
@@ -58,10 +61,14 @@ export default defineComponent({
       }
       return styles;
     });
+    const onClick = (ev: MouseEvent) => {
+      emit('click', ev);
+    };
 
     return {
       cls,
-      innerStyle
+      innerStyle,
+      onClick,
     };
   }
 });
@@ -131,7 +138,9 @@ export type {} from './icon-components';
 `;
 
 export const getType = ({ exports }: { exports: string[] }) =>
-  `declare module 'vue' {
+  `// @ts-nocheck
+
+declare module 'vue' {
   export interface GlobalComponents {
 ${exports.map((item) => `${' '.repeat(4)}${item}`).join('\n')}
   }

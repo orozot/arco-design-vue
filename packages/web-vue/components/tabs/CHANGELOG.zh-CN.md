@@ -2,6 +2,42 @@
 changelog: true
 ```
 
+## 2.45.1
+
+`2023-04-14`
+
+### 🐛 问题修复
+
+- 修复个别情况下tab-pane 的title 插槽不更新的问题 ([#2325](https://github.com/arco-design/arco-design-vue/pull/2325))
+
+
+## 2.43.0
+
+`2023-02-10`
+
+### 🐛 问题修复
+
+- 无匹配选项卡时，隐藏选项卡指示器 ([#2105](https://github.com/arco-design/arco-design-vue/pull/2105))
+
+
+## 2.41.1
+
+`2023-01-06`
+
+### 🐛 问题修复
+
+- 修复在 `capsule` 类型下滚动异常的问题 ([#2031](https://github.com/arco-design/arco-design-vue/pull/2031))
+
+
+## 2.40.1
+
+`2022-12-23`
+
+### 💅 样式更新
+
+- 修复 `rounded` 和 `capsule` 类型下 `size` 不生效的问题 ([#1988](https://github.com/arco-design/arco-design-vue/pull/1988))
+
+
 ## 2.37.4
 
 `2022-09-30`

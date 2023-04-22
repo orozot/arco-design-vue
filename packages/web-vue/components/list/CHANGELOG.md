@@ -2,6 +2,42 @@
 changelog: true
 ```
 
+## 2.44.6
+
+`2023-03-31`
+
+### 🐛 BugFix
+
+- Fix an issue that may trigger reach-bottom when scrolling up ([#2295](https://github.com/arco-design/arco-design-vue/pull/2295))
+
+
+## 2.44.2
+
+`2023-03-17`
+
+### 🐛 BugFix
+
+- list supports backend data pagination ([#2199](https://github.com/arco-design/arco-design-vue/pull/2199))
+
+
+## 2.40.1
+
+`2022-12-23`
+
+### 🐛 BugFix
+
+- Fix the problem that the scroll bar appears in the grid list mode ([#1970](https://github.com/arco-design/arco-design-vue/pull/1970))
+
+
+## 2.40.0
+
+`2022-12-09`
+
+### 🐛 BugFix
+
+- Fix the problem that the scrollbar attribute fails when passing the virtual scrollbar attribute ([#1929](https://github.com/arco-design/arco-design-vue/pull/1929))
+
+
 ## 2.37.2
 
 `2022-09-21`

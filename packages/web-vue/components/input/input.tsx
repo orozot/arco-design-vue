@@ -77,7 +77,7 @@ export default defineComponent({
      */
     placeholder: String,
     /**
-     * @zh 输入值得最大长度，errorOnly 属性在 2.12.0 版本添加
+     * @zh 输入值的最大长度，errorOnly 属性在 2.12.0 版本添加
      * @en Enter the maximum length of the value, the errorOnly attribute was added in version 2.12.0
      */
     maxLength: {
@@ -253,6 +253,11 @@ export default defineComponent({
       return props.maxLength;
     });
 
+    const defaultMaxLength = computed(() => {
+      const bytePerChar = getValueLength('a');
+      return Math.floor(maxLength.value / bytePerChar);
+    });
+
     const updateValue = (value: string) => {
       if (
         maxLength.value &&
@@ -261,7 +266,7 @@ export default defineComponent({
       ) {
         value =
           props.wordSlice?.(value, maxLength.value) ??
-          value.slice(0, maxLength.value);
+          value.slice(0, defaultMaxLength.value);
       }
 
       _value.value = value;
@@ -308,7 +313,7 @@ export default defineComponent({
         if (
           maxLength.value &&
           !maxLengthErrorOnly.value &&
-          computedValue.value.length >= maxLength.value &&
+          valueLength.value >= maxLength.value &&
           getValueLength(value) > maxLength.value &&
           selectionStart === selectionEnd
         ) {
@@ -344,7 +349,7 @@ export default defineComponent({
         if (
           maxLength.value &&
           !maxLengthErrorOnly.value &&
-          computedValue.value.length >= maxLength.value &&
+          valueLength.value >= maxLength.value &&
           getValueLength(value) > maxLength.value &&
           (e as InputEvent).inputType === 'insertText'
         ) {

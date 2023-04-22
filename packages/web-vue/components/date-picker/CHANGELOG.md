@@ -2,6 +2,118 @@
 changelog: true
 ```
 
+## 2.45.2
+
+`2023-04-21`
+
+### 🐛 BugFix
+
+- fix styling problem with panel-only pickers ([#2349](https://github.com/arco-design/arco-design-vue/pull/2349))
+
+
+## 2.45.0
+
+`2023-04-07`
+
+### 🆕 Feature
+
+- Add the abbreviation property to control whether the abbreviation of the month is displayed ([#2264](https://github.com/arco-design/arco-design-vue/pull/2264))
+
+### 🐛 BugFix
+
+- Fix the problem that exchange-time fails when selecting ([#2302](https://github.com/arco-design/arco-design-vue/pull/2302))
+
+
+## 2.44.3
+
+`2023-03-24`
+
+### 🐛 BugFix
+
+- Fix bugs with year range selector ([#2270](https://github.com/arco-design/arco-design-vue/pull/2270))
+
+
+## 2.43.1
+
+`2023-02-17`
+
+### 🐛 BugFix
+
+- Fix the problem that an error is returned because dayjs does not support quarter parsing ([#2110](https://github.com/arco-design/arco-design-vue/pull/2110))
+
+
+## 2.43.0
+
+`2023-02-10`
+
+### 🆕 Feature
+
+- Add the `disabled-input` property to disable keyboard input ([#2072](https://github.com/arco-design/arco-design-vue/pull/2072))
+
+
+## 2.42.0
+
+`2023-01-13`
+
+### 🆕 Feature
+
+- Add blur event to support corresponding inspection in the form ([#1958](https://github.com/arco-design/arco-design-vue/pull/1958))
+
+
+## 2.41.0
+
+`2022-12-30`
+
+### 🆕 Feature
+
+- `date-picker` supports prefix slots ([#1997](https://github.com/arco-design/arco-design-vue/pull/1997))
+
+
+## 2.40.1
+
+`2022-12-23`
+
+### 🐛 BugFix
+
+- Fix the problem that the panel text display error under internationalization ([#1965](https://github.com/arco-design/arco-design-vue/pull/1965))
+
+
+## 2.40.0
+
+`2022-12-09`
+
+### 🐛 BugFix
+
+- Fix the bug that the `feedback` attribute of the `Form` component does not take effect in the `date-picker` component. ([#1932](https://github.com/arco-design/arco-design-vue/pull/1932))
+
+
+## 2.39.0
+
+`2022-11-18`
+
+### 🐛 BugFix
+
+- year range can't skip by 10 year ([#1847](https://github.com/arco-design/arco-design-vue/pull/1847))
+
+
+## 2.38.1
+
+`2022-11-04`
+
+### 🐛 BugFix
+
+- Fix internal property error issue ([#1818](https://github.com/arco-design/arco-design-vue/pull/1818))
+
+
+## 2.38.0-beta.2
+
+`2022-10-21`
+
+### 🐛 BugFix
+
+- Fix the problem of disabled style error under safari ([#1770](https://github.com/arco-design/arco-design-vue/pull/1770))
+
+
 ## 2.35.2
 
 `2022-08-29`

@@ -2,6 +2,80 @@
 changelog: true
 ```
 
+## 2.45.2
+
+`2023-04-21`
+
+### 💅 样式更新
+
+- 修复 select-view-input 的 line-height 和 height 不一致 ([#2346](https://github.com/arco-design/arco-design-vue/pull/2346))
+
+
+## 2.44.6
+
+`2023-03-31`
+
+### 🐛 问题修复
+
+- 修复设置 modelValue 为 undefined 失效的问题 ([#2285](https://github.com/arco-design/arco-design-vue/pull/2285))
+
+
+## 2.44.3
+
+`2023-03-24`
+
+### 🐛 问题修复
+
+- 修复动态 slot options 导致 dropdown 为空的问题 ([#2265](https://github.com/arco-design/arco-design-vue/pull/2265))
+- 不允许自动创建空字符串条目。含有空字符串的下拉选项，清空时将值设置为 `undefined` ([#2257](https://github.com/arco-design/arco-design-vue/pull/2257))
+
+
+## 2.44.2
+
+`2023-03-17`
+
+### 🐛 问题修复
+
+- 下拉选项值支持空字符串 ([#2190](https://github.com/arco-design/arco-design-vue/pull/2190))
+
+
+## 2.43.0
+
+`2023-02-10`
+
+### 🆕 新增功能
+
+- 新增 `defaultActiveFirstOption` 属性 ([#2107](https://github.com/arco-design/arco-design-vue/pull/2107))
+- 增加 header 插槽 ([#2099](https://github.com/arco-design/arco-design-vue/pull/2099))
+
+
+## 2.41.0
+
+`2022-12-30`
+
+### 💅 样式更新
+
+- 统一 `select` 组件单选和多选时后缀图标为 `arrow-icon`。 ([#2005](https://github.com/arco-design/arco-design-vue/pull/2005))
+
+
+## 2.38.0
+
+`2022-10-28`
+
+### 🐛 问题修复
+
+- 修复 formatLabel 在无数据时报错的问题 ([#1797](https://github.com/arco-design/arco-design-vue/pull/1797))
+
+
+## 2.38.0-beta.1
+
+`2022-10-14`
+
+### 💎 功能优化
+
+- 增加已选择项的缓存，优化在远程搜索时的 label 显示问题 ([#1731](https://github.com/arco-design/arco-design-vue/pull/1731))
+
+
 ## 2.37.4
 
 `2022-09-30`

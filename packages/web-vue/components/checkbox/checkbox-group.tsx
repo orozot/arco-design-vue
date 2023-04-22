@@ -14,7 +14,7 @@ import { checkboxGroupKey } from './context';
 import { useFormItem } from '../_hooks/use-form-item';
 import { CheckboxOption } from './interface';
 import Checkbox from './checkbox';
-import { isFunction, isNumber, isString } from '../_utils/is';
+import { isFunction, isNumber, isString, isArray } from '../_utils/is';
 
 export default defineComponent({
   name: 'CheckboxGroup',
@@ -74,7 +74,7 @@ export default defineComponent({
     /**
      * @zh 值改变时触发
      * @en Trigger when the value changes
-     * @param {(string|number|boolean)[]} value
+     * @param {(string | number | boolean)[]} value
      * @param {Event} ev
      */
     'change': (value: (string | number | boolean)[], ev: Event) => true,
@@ -102,7 +102,9 @@ export default defineComponent({
     });
 
     const _value = ref(props.defaultValue);
-    const computedValue = computed(() => props.modelValue ?? _value.value);
+    const computedValue = computed(() =>
+      isArray(props.modelValue) ? props.modelValue : _value.value
+    );
     const isMaxed = computed(() =>
       props.max === undefined ? false : computedValue.value.length >= props.max
     );
@@ -146,8 +148,10 @@ export default defineComponent({
     watch(
       () => props.modelValue,
       (curValue) => {
-        if (curValue) {
+        if (isArray(curValue)) {
           _value.value = [...curValue];
+        } else {
+          _value.value = [];
         }
       }
     );

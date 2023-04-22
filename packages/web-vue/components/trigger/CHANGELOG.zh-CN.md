@@ -2,6 +2,33 @@
 changelog: true
 ```
 
+## 2.44.7
+
+`2023-04-03`
+
+### 🐛 问题修复
+
+- 修复在 iframe 中报错的问题 ([#2300](https://github.com/arco-design/arco-design-vue/pull/2300))
+
+
+## 2.44.6
+
+`2023-03-31`
+
+### 💎 功能优化
+
+- 优化弹出位置在 ShadowRoot 中不准确问题 ([#2273](https://github.com/arco-design/arco-design-vue/pull/2273))
+
+
+## 2.38.0-beta.2
+
+`2022-10-21`
+
+### 🐛 问题修复
+
+- 修复在 windows 中 arrow 定位错误的问题 ([#1480](https://github.com/arco-design/arco-design-vue/pull/1480))
+
+
 ## 2.35.1
 
 `2022-08-19`

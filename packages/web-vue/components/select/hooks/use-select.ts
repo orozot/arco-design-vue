@@ -25,6 +25,8 @@ export const useSelect = ({
   virtualListRef,
   onSelect,
   onPopupVisibleChange,
+  enterToOpen = true,
+  defaultActiveFirstOption,
 }: {
   multiple?: Ref<boolean>;
   options?: Ref<SelectOption[]>;
@@ -43,6 +45,8 @@ export const useSelect = ({
   virtualListRef?: Ref<VirtualListRef>;
   onSelect: (key: string, ev: Event) => void;
   onPopupVisibleChange: (visible: boolean) => void;
+  enterToOpen?: boolean;
+  defaultActiveFirstOption?: Ref<boolean>;
 }) => {
   const {
     validOptions,
@@ -124,9 +128,13 @@ export const useSelect = ({
     if (visible) {
       // get last value key
       const current = valueKeys.value[valueKeys.value.length - 1];
-      const _activeKey = enabledOptionKeys.value.includes(current)
-        ? current
-        : enabledOptionKeys.value[0];
+      let _activeKey =
+        defaultActiveFirstOption?.value ?? true
+          ? enabledOptionKeys.value[0]
+          : undefined;
+      if (enabledOptionKeys.value.includes(current)) {
+        _activeKey = current;
+      }
       if (_activeKey !== activeKey.value) {
         activeKey.value = _activeKey;
       }
@@ -148,41 +156,48 @@ export const useSelect = ({
             if (popupVisible.value) {
               if (activeKey.value) {
                 onSelect(activeKey.value, e);
+                e.preventDefault();
               }
-            } else {
+            } else if (enterToOpen) {
               onPopupVisibleChange(true);
+              e.preventDefault();
             }
           }
-          e.preventDefault();
         },
       ],
       [
         KEYBOARD_KEY.ESC,
         (e: Event) => {
-          onPopupVisibleChange(false);
-          e.preventDefault();
+          if (popupVisible.value) {
+            onPopupVisibleChange(false);
+            e.preventDefault();
+          }
         },
       ],
       [
         KEYBOARD_KEY.ARROW_DOWN,
         (e: Event) => {
-          const next = getNextActiveKey('down');
-          if (next) {
-            activeKey.value = next;
-            scrollIntoView(next);
+          if (popupVisible.value) {
+            const next = getNextActiveKey('down');
+            if (next) {
+              activeKey.value = next;
+              scrollIntoView(next);
+            }
+            e.preventDefault();
           }
-          e.preventDefault();
         },
       ],
       [
         KEYBOARD_KEY.ARROW_UP,
         (e: Event) => {
-          const next = getNextActiveKey('up');
-          if (next) {
-            activeKey.value = next;
-            scrollIntoView(next);
+          if (popupVisible.value) {
+            const next = getNextActiveKey('up');
+            if (next) {
+              activeKey.value = next;
+              scrollIntoView(next);
+            }
+            e.preventDefault();
           }
-          e.preventDefault();
         },
       ],
     ])

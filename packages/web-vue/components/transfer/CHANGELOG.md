@@ -2,6 +2,44 @@
 changelog: true
 ```
 
+## 2.45.0
+
+`2023-04-07`
+
+### 🆕 Feature
+
+- add custom header slots ([#2314](https://github.com/arco-design/arco-design-vue/pull/2314))
+
+
+## 2.44.6
+
+`2023-03-31`
+
+### 🐛 BugFix
+
+- Fix title ellipsis failure ([#2278](https://github.com/arco-design/arco-design-vue/pull/2278))
+
+
+## 2.39.0
+
+`2022-11-18`
+
+### 🆕 Feature
+
+- Added panel slot to allow custom content ([#1873](https://github.com/arco-design/arco-design-vue/pull/1873))
+- internally replaced with a virtual scrollbar ([#1873](https://github.com/arco-design/arco-design-vue/pull/1873))
+- can hide select all checkbox ([#1845](https://github.com/arco-design/arco-design-vue/pull/1845))
+
+
+## 2.38.0-beta.1
+
+`2022-10-14`
+
+### 🐛 BugFix
+
+- Fix can't scroll problem ([#1723](https://github.com/arco-design/arco-design-vue/pull/1723))
+
+
 ## 2.34.0
 
 `2022-07-29`

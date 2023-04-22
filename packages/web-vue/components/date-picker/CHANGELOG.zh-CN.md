@@ -2,6 +2,118 @@
 changelog: true
 ```
 
+## 2.45.2
+
+`2023-04-21`
+
+### 🐛 问题修复
+
+- 修复只使用面板情况下的样式问题 ([#2349](https://github.com/arco-design/arco-design-vue/pull/2349))
+
+
+## 2.45.0
+
+`2023-04-07`
+
+### 🆕 新增功能
+
+- 增加 abbreviation 属性，控制月份是否显示简称 ([#2264](https://github.com/arco-design/arco-design-vue/pull/2264))
+
+### 🐛 问题修复
+
+- 修复 exchange-time 在选择时失效的问题 ([#2302](https://github.com/arco-design/arco-design-vue/pull/2302))
+
+
+## 2.44.3
+
+`2023-03-24`
+
+### 🐛 问题修复
+
+- 修复年份范围选择器存在的问题 ([#2270](https://github.com/arco-design/arco-design-vue/pull/2270))
+
+
+## 2.43.1
+
+`2023-02-17`
+
+### 🐛 问题修复
+
+- 修复因dayjs不支持季度解析导致返回错误的问题 ([#2110](https://github.com/arco-design/arco-design-vue/pull/2110))
+
+
+## 2.43.0
+
+`2023-02-10`
+
+### 🆕 新增功能
+
+- 增加 `disabled-input` 属性，可以禁用键盘输入 ([#2072](https://github.com/arco-design/arco-design-vue/pull/2072))
+
+
+## 2.42.0
+
+`2023-01-13`
+
+### 🆕 新增功能
+
+- 增加 blur 事件，可以在表单中支持相应检验 ([#1958](https://github.com/arco-design/arco-design-vue/pull/1958))
+
+
+## 2.41.0
+
+`2022-12-30`
+
+### 🆕 新增功能
+
+- `date-picker` 支持 `prefix` 插槽。 ([#1997](https://github.com/arco-design/arco-design-vue/pull/1997))
+
+
+## 2.40.1
+
+`2022-12-23`
+
+### 🐛 问题修复
+
+- 修复在国际化下面板文案显示错误的问题 ([#1965](https://github.com/arco-design/arco-design-vue/pull/1965))
+
+
+## 2.40.0
+
+`2022-12-09`
+
+### 🐛 问题修复
+
+- 修复 `Form` 组件的 `feedback` 属性在  `date-picker` 组件不生效的 bug。 ([#1932](https://github.com/arco-design/arco-design-vue/pull/1932))
+
+
+## 2.39.0
+
+`2022-11-18`
+
+### 🐛 问题修复
+
+- 修复选择年范围时无法跳转10年 ([#1847](https://github.com/arco-design/arco-design-vue/pull/1847))
+
+
+## 2.38.1
+
+`2022-11-04`
+
+### 🐛 问题修复
+
+- 修复内部属性错误问题 ([#1818](https://github.com/arco-design/arco-design-vue/pull/1818))
+
+
+## 2.38.0-beta.2
+
+`2022-10-21`
+
+### 🐛 问题修复
+
+- 修复在 safari 下 disabled 样式错误的问题 ([#1770](https://github.com/arco-design/arco-design-vue/pull/1770))
+
+
 ## 2.35.2
 
 `2022-08-29`

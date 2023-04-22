@@ -35,14 +35,14 @@ description: In a set of data, the user can select one or more data through the 
 |---|---|---|:---:|
 |model-value **(v-model)**|Value|`boolean \| Array<string \| number \| boolean>`|`-`|
 |default-checked|Whether checked by default (uncontrolled state)|`boolean`|`false`|
-|value|The `value` of the option|`string \| number`|`-`|
+|value|The `value` of the option|`string \| number \| boolean`|`-`|
 |disabled|Whether to disable|`boolean`|`false`|
 |indeterminate|Whether it is half-selected|`boolean`|`false`|
 ### `<checkbox>` Events
 
 |Event Name|Description|Parameters|
 |---|---|---|
-|change|Trigger when the value changes|value: `union`<br>ev: `Event`|
+|change|Trigger when the value changes|value: ` boolean \| (string \| number \| boolean)[] `<br>ev: `Event`|
 ### `<checkbox>` Slots
 
 |Slot Name|Description|Parameters|version|
@@ -66,7 +66,7 @@ description: In a set of data, the user can select one or more data through the 
 
 |Event Name|Description|Parameters|
 |---|---|---|
-|change|Trigger when the value changes|value: `union`<br>ev: `Event`|
+|change|Trigger when the value changes|value: `(string \| number \| boolean)[]`<br>ev: `Event`|
 ### `<checkbox-group>` Slots
 
 |Slot Name|Description|Parameters|version|

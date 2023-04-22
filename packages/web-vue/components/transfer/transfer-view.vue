@@ -1,42 +1,73 @@
 <template>
   <div :class="prefixCls">
     <div :class="`${prefixCls}-header`">
-      <span :class="`${prefixCls}-header-title`">
-        <template v-if="allowClear || simple">{{ title }}</template>
-        <checkbox
-          v-else
-          :model-value="checked"
-          :indeterminate="indeterminate"
-          uninject-group-context
-          @change="handleSelectAllChange"
-        >
-          {{ title }}
-        </checkbox>
-      </span>
-      <icon-hover
-        v-if="allowClear"
-        :class="`${prefixCls}-header-clear-btn`"
-        @click="handleClear"
+      <slot
+        name="title"
+        :count-total="dataInfo.data.length"
+        :count-selected="dataInfo.selected.length"
+        :search-value="filter"
+        :checked="checked"
+        :indeterminate="indeterminate"
+        :on-select-all-change="handleSelectAllChange"
+        :on-clear="handleClear"
       >
-        <icon-delete />
-      </icon-hover>
-      <span v-else-if="!simple" :class="`${prefixCls}-header-count`">
-        {{ dataInfo.selected.length }} / {{ dataInfo.data.length }}
-      </span>
+        <span :class="`${prefixCls}-header-title`">
+          <span
+            v-if="allowClear || simple || !showSelectAll"
+            :class="`${prefixCls}-header-title-simple`"
+          >
+            {{ title }}
+          </span>
+          <checkbox
+            v-else
+            :model-value="checked"
+            :indeterminate="indeterminate"
+            uninject-group-context
+            @change="handleSelectAllChange"
+          >
+            {{ title }}
+          </checkbox>
+        </span>
+        <icon-hover
+          v-if="allowClear"
+          :class="`${prefixCls}-header-clear-btn`"
+          @click="handleClear"
+        >
+          <icon-delete />
+        </icon-hover>
+        <span v-else-if="!simple" :class="`${prefixCls}-header-count`">
+          {{ dataInfo.selected.length }} / {{ dataInfo.data.length }}
+        </span>
+      </slot>
     </div>
     <div v-if="showSearch" :class="`${prefixCls}-search`">
       <input-search v-model="filter" @change="handleSearch" />
     </div>
-    <list :class="`${prefixCls}-list`" :bordered="false">
-      <transfer-list-item
-        v-for="item of filteredData"
-        :key="item.value"
-        :type="type"
-        :data="item"
-        :simple="simple"
-        :allow-clear="allowClear"
-      />
-    </list>
+    <div :class="`${prefixCls}-body`">
+      <Scrollbar v-if="filteredData.length > 0">
+        <slot
+          :data="filteredData"
+          :selected-keys="transferCtx?.selected"
+          :on-select="transferCtx?.onSelect"
+        >
+          <list
+            :class="`${prefixCls}-list`"
+            :bordered="false"
+            :scrollbar="false"
+          >
+            <transfer-list-item
+              v-for="item of filteredData"
+              :key="item.value"
+              :type="type"
+              :data="item"
+              :simple="simple"
+              :allow-clear="allowClear"
+            />
+          </list>
+        </slot>
+      </Scrollbar>
+      <Empty v-else :class="`${prefixCls}-empty`" />
+    </div>
   </div>
 </template>
 
@@ -51,16 +82,20 @@ import List from '../list';
 import TransferListItem from './transfer-list-item';
 import { DataInfo, TransferItem } from './interface';
 import { transferInjectionKey } from './context';
+import Scrollbar from '../scrollbar';
+import Empty from '../empty/empty';
 
 export default defineComponent({
   name: 'TransferView',
   components: {
+    Empty,
     Checkbox,
     IconHover,
     IconDelete,
     InputSearch: Input.Search,
     List,
     TransferListItem,
+    Scrollbar,
   },
   props: {
     type: {
@@ -81,6 +116,7 @@ export default defineComponent({
       required: true,
     },
     showSearch: Boolean,
+    showSelectAll: Boolean,
     simple: Boolean,
   },
   emits: ['search'],
@@ -88,6 +124,8 @@ export default defineComponent({
     const prefixCls = getPrefixCls('transfer-view');
     const filter = ref('');
     const transferCtx = inject(transferInjectionKey, undefined);
+    const countSelected = computed(() => props.dataInfo.selected.length);
+    const countRendered = computed(() => props.dataInfo.data.length);
 
     const checked = computed(
       () =>
@@ -138,9 +176,12 @@ export default defineComponent({
       filter,
       checked,
       indeterminate,
+      countSelected,
+      countRendered,
       handleSelectAllChange,
       handleSearch,
       handleClear,
+      transferCtx,
     };
   },
 });

@@ -65,6 +65,14 @@
           &-text {
             color: inherit;
           }
+          // fix the title in checkbox-label ellipsis not work
+          &-label {
+            .text-ellipsis();
+          }
+        }
+        // fix simple mode the title  ellipsis not work
+        &-simple {
+          .text-ellipsis();
         }
       }
 
@@ -86,16 +94,30 @@
       }
     }
 
-    .@{prefix}-list {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      border-radius: 0;
+    &-body {
+      flex: 1 1 auto;
+      overflow: hidden;
 
-      &-content {
-        flex: 1;
-        overflow-y: auto;
+      .@{transfer-prefix-cls}-view-empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
       }
+    }
+
+    .@{prefix}-scrollbar {
+      height: 100%;
+
+      &-container {
+        height: 100%;
+        overflow: auto;
+      }
+    }
+
+    .@{prefix}-list {
+      border-radius: 0;
 
       &-footer {
         position: relative;

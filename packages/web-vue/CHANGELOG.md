@@ -2,6 +2,467 @@
 changelog: true
 ```
 
+## 2.45.2
+
+`2023-04-21`
+
+### 🐛 BugFix
+
+- **date-picker:** fix styling problem with panel-only pickers ([#2349](https://github.com/arco-design/arco-design-vue/pull/2349))
+
+### 💅 Style
+
+- **select:** Fix the inconsistent line-height and height of select-view-input ([#2346](https://github.com/arco-design/arco-design-vue/pull/2346))
+
+
+## 2.45.1
+
+`2023-04-14`
+
+### 🐛 BugFix
+
+- **image:** Fix `sizeStyle` failure issue ([#2327](https://github.com/arco-design/arco-design-vue/pull/2327))
+- **cascader:** Fix the abnormal display of search results when the width of the control is short ([#2326](https://github.com/arco-design/arco-design-vue/pull/2326))
+- **tabs:** fixed individual cases where tab slots are not updated ([#2325](https://github.com/arco-design/arco-design-vue/pull/2325))
+
+### 💅 Style
+
+- **table:** Fix the problem of displaying the horizontal scroll bar under the virtual list ([#2337](https://github.com/arco-design/arco-design-vue/pull/2337))
+
+
+## 2.45.0
+
+`2023-04-07`
+
+### 🆕 Feature
+
+- **transfer:** add custom header slots ([#2314](https://github.com/arco-design/arco-design-vue/pull/2314))
+- **date-picker:** Add the abbreviation property to control whether the abbreviation of the month is displayed ([#2264](https://github.com/arco-design/arco-design-vue/pull/2264))
+- **switch:** add text props ([#2223](https://github.com/arco-design/arco-design-vue/pull/2223))
+- **tree:** add data-level and data-key attributes to tree nodes ([#2192](https://github.com/arco-design/arco-design-vue/pull/2192))
+
+### 🐛 BugFix
+
+- **date-picker:** Fix the problem that exchange-time fails when selecting ([#2302](https://github.com/arco-design/arco-design-vue/pull/2302))
+
+
+## 2.44.7
+
+`2023-04-03`
+
+### 🐛 BugFix
+
+- **trigger:** Fix the problem of reporting errors in iframe ([#2300](https://github.com/arco-design/arco-design-vue/pull/2300))
+
+
+## 2.44.6
+
+`2023-03-31`
+
+### 🐛 BugFix
+
+- **list:** Fix an issue that may trigger reach-bottom when scrolling up ([#2295](https://github.com/arco-design/arco-design-vue/pull/2295))
+- **select:** Fix the problem that setting modelValue to undefined is invalid ([#2285](https://github.com/arco-design/arco-design-vue/pull/2285))
+- **transfer:** Fix title ellipsis failure ([#2278](https://github.com/arco-design/arco-design-vue/pull/2278))
+- **upload:** modify parameter transferred in extra-button slot ([#2272](https://github.com/arco-design/arco-design-vue/pull/2272))
+- **time-picker:** Fix the bubbling behavior of the clear event. ([#2271](https://github.com/arco-design/arco-design-vue/pull/2271))
+
+### 💎 Enhancement
+
+- **trigger:** Optimize the problem that the popup position is not accurate in ShadowRoot ([#2273](https://github.com/arco-design/arco-design-vue/pull/2273))
+
+
+## 2.44.3
+
+`2023-03-24`
+
+### 🐛 BugFix
+
+- **date-picker:** Fix bugs with year range selector ([#2270](https://github.com/arco-design/arco-design-vue/pull/2270))
+- The component package adds the `exports` flag to solve the problem of parsing to CommonJS under nuxt3 ([#2270](https://github.com/arco-design/arco-design-vue/pull/2270))
+- **select:** fix blank dropdown caused by dynamic slot options ([#2265](https://github.com/arco-design/arco-design-vue/pull/2265))
+- **select:** Automatic creation of empty string entries is not allowed. Dropdown option with empty string, set value to `undefined` when empty ([#2257](https://github.com/arco-design/arco-design-vue/pull/2257))
+
+### 🆎 TypeScript
+
+- update the buttonProps types of some components ([#2266](https://github.com/arco-design/arco-design-vue/pull/2266))
+
+
+## 2.44.2
+
+`2023-03-17`
+
+### 🐛 BugFix
+
+- **form:** Fix the problem that the array format is not supported in the field attribute ([#2242](https://github.com/arco-design/arco-design-vue/pull/2242))
+- **slider:** Fix the problem of model-value binding error in range mode ([#2241](https://github.com/arco-design/arco-design-vue/pull/2241))
+- **tree:** adjust the emit order of select and update:selectedKeys, check and update:checkedKeys ([#2228](https://github.com/arco-design/arco-design-vue/pull/2228))
+- **divider:** Fix the problem that the dividing line is displayed incorrectly ([#2205](https://github.com/arco-design/arco-design-vue/pull/2205))
+- **list:** list supports backend data pagination ([#2199](https://github.com/arco-design/arco-design-vue/pull/2199))
+- **select:** drop-down option value supports empty string ([#2190](https://github.com/arco-design/arco-design-vue/pull/2190))
+- **input:** fix issue with content modification at maximum value using non-input method ([#2188](https://github.com/arco-design/arco-design-vue/pull/2188))
+
+### 💎 Enhancement
+
+- **form:** Add Chinese inspection information ([#2240](https://github.com/arco-design/arco-design-vue/pull/2240))
+- Added Vietnamese (vi-VN)  languages ([#2219](https://github.com/arco-design/arco-design-vue/pull/2219))
+- Added Khmer(Cambodia) (km-KH) languages ([#2219](https://github.com/arco-design/arco-design-vue/pull/2219))
+
+### 💅 Style
+
+- **calendar:** fix some style problems ([#2239](https://github.com/arco-design/arco-design-vue/pull/2239))
+
+### 🆎 TypeScript
+
+- **upload:** beforeUpload allows to return a boolean value ([#2204](https://github.com/arco-design/arco-design-vue/pull/2204))
+- Fix virtual list ts definition problem ([#2168](https://github.com/arco-design/arco-design-vue/pull/2168))
+
+
+## 2.44.1
+
+`2023-03-10`
+
+### 🐛 BugFix
+
+- **calendar:** fix the wrong import path problem
+
+
+## 2.44.0
+
+`2023-03-10`
+
+### 🆕 Feature
+
+- **calendar:** New calendar component ([#2217](https://github.com/arco-design/arco-design-vue/pull/2217))
+
+
+## 2.43.2
+
+`2023-02-24`
+
+### 🐛 BugFix
+
+- **input-number:** fix display step button in disabled state ([#2169](https://github.com/arco-design/arco-design-vue/pull/2169))
+- **form:** Fix invalidation of validateStatus of FormItem ([#2158](https://github.com/arco-design/arco-design-vue/pull/2158))
+- **checkbox:** Fixed checkbox retaining hover style when deselected ([#2124](https://github.com/arco-design/arco-design-vue/pull/2124))
+
+### 💎 Enhancement
+
+- **modal:** add update method of function call ([#2155](https://github.com/arco-design/arco-design-vue/pull/2155))
+- **drawer:** add update method of function call ([#2155](https://github.com/arco-design/arco-design-vue/pull/2155))
+
+
+## 2.43.1
+
+`2023-02-17`
+
+### 🐛 BugFix
+
+- **date-picker:** Fix the problem that an error is returned because dayjs does not support quarter parsing ([#2110](https://github.com/arco-design/arco-design-vue/pull/2110))
+
+
+## 2.43.0
+
+`2023-02-10`
+
+### 🆕 Feature
+
+- **select:** Added `defaultActiveFirstOption` property ([#2107](https://github.com/arco-design/arco-design-vue/pull/2107))
+- **select:** add header slot ([#2099](https://github.com/arco-design/arco-design-vue/pull/2099))
+- **dropdown:** add hide-on-select props ([#2078](https://github.com/arco-design/arco-design-vue/pull/2078))
+- **date-picker:** Add the `disabled-input` property to disable keyboard input ([#2072](https://github.com/arco-design/arco-design-vue/pull/2072))
+- **drawer:** add `before-open` and `before-close` events ([#2064](https://github.com/arco-design/arco-design-vue/pull/2064))
+- **upload:** Added file list extra button slot `#extra-button` ([#2060](https://github.com/arco-design/arco-design-vue/pull/2060))
+
+### 🐛 BugFix
+
+- **notification:** Fix the problem that the update duration fails ([#2106](https://github.com/arco-design/arco-design-vue/pull/2106))
+- **tabs:** Hide the tab indicator when there are no matching tabs ([#2105](https://github.com/arco-design/arco-design-vue/pull/2105))
+- **menu:** fix the hotreload problem ([#2091](https://github.com/arco-design/arco-design-vue/pull/2091))
+
+### 🆎 TypeScript
+
+- Update the type of `triggerProps` for some components ([#2090](https://github.com/arco-design/arco-design-vue/pull/2090))
+
+
+## 2.42.1
+
+`2023-02-03`
+
+### 🐛 BugFix
+
+- **scrollbar:** fix ts declaration error for emits ([#2077](https://github.com/arco-design/arco-design-vue/pull/2077))
+- **slider:** Optimize the automatic repair of invalid input in the digital input box ([#1952](https://github.com/arco-design/arco-design-vue/pull/1952))
+- **input-number:** fix step-button is not properly disabled or enabled when min or max is changed ([#1777](https://github.com/arco-design/arco-design-vue/pull/1777))
+
+
+## 2.42.0
+
+`2023-01-13`
+
+### 🆕 Feature
+
+- **upload:** Add `showPreviewButton` property ([#2049](https://github.com/arco-design/arco-design-vue/pull/2049))
+- **slider:** add show-tooltip props ([#2037](https://github.com/arco-design/arco-design-vue/pull/2037))
+- **mention:** add focus and blur methods ([#2022](https://github.com/arco-design/arco-design-vue/pull/2022))
+- **date-picker:** Add blur event to support corresponding inspection in the form ([#1958](https://github.com/arco-design/arco-design-vue/pull/1958))
+
+### 🐛 BugFix
+
+- **upload:** Fixed an issue that could cause file deletion errors when uploading ([#2048](https://github.com/arco-design/arco-design-vue/pull/2048))
+- **switch:** Fix the problem that the custom color style is wrong when the type is `line` ([#2044](https://github.com/arco-design/arco-design-vue/pull/2044))
+
+
+## 2.41.1
+
+`2023-01-06`
+
+### 🐛 BugFix
+
+- **tabs:** Fix the problem of scrolling exception under `capsule` type ([#2031](https://github.com/arco-design/arco-design-vue/pull/2031))
+- **table:** Fix the problem that the width error may appear after the browser is zoomed when `scroll` is turned on ([#2028](https://github.com/arco-design/arco-design-vue/pull/2028))
+- Fix the problem that ts cannot recognize custom properties ([#2027](https://github.com/arco-design/arco-design-vue/pull/2027))
+
+### 💎 Enhancement
+
+- **icon:** Optimize the `click` event of the component, and perform encapsulation and transparent transmission in the component ([#2030](https://github.com/arco-design/arco-design-vue/pull/2030))
+
+### 🆎 TypeScript
+
+- **checkbox:** Fix missing type for `value` values ([#2029](https://github.com/arco-design/arco-design-vue/pull/2029))
+
+
+## 2.41.0
+
+`2022-12-30`
+
+### 🆕 Feature
+
+- **upload:** Add `upload` method ([#2010](https://github.com/arco-design/arco-design-vue/pull/2010))
+- **alert:** Add `normal` type ([#2009](https://github.com/arco-design/arco-design-vue/pull/2009))
+- **message:** Add `normal` type ([#2009](https://github.com/arco-design/arco-design-vue/pull/2009))
+- **date-picker:** `date-picker` supports prefix slots ([#1997](https://github.com/arco-design/arco-design-vue/pull/1997))
+- **time-picker:** `time-picker` supports prefix slots ([#1997](https://github.com/arco-design/arco-design-vue/pull/1997))
+- **form:** `form-item` supports tooltip property ([#1991](https://github.com/arco-design/arco-design-vue/pull/1991))
+- **form:** `form-item` supports asteriskPosition property ([#1991](https://github.com/arco-design/arco-design-vue/pull/1991))
+- Add spanish ([#2008](https://github.com/arco-design/arco-design-vue/pull/2008))
+- Added Indonesian, French (France), German (Germany), Korean, Italian (Italy),Malay (Malaysia), Thai language files. ([#2011](https://github.com/arco-design/arco-design-vue/pull/2011))
+
+### 🐛 BugFix
+
+- **mention:** Fix the problem that the Enter key is invalid in textarea mode ([#2013](https://github.com/arco-design/arco-design-vue/pull/2013))
+- **upload:** Fix the bug that the `upload` component judged wrongly when verifying that the uploaded file conforms to the `accept` format in some scenarios. ([#2007](https://github.com/arco-design/arco-design-vue/pull/2007))
+- **typography:** Fixed ellipsis invalidation with parent container setting `white-space: nowrap` ([#1995](https://github.com/arco-design/arco-design-vue/pull/1995))
+- **image:** Fix the bug that the image id may not be collected and cause preview errors ([#1992](https://github.com/arco-design/arco-design-vue/pull/1992))
+- **input:** Fix the problem that the custom calculation character length will not be limited by `max-length` ([#1942](https://github.com/arco-design/arco-design-vue/pull/1942))
+- **checkbox:** Set to empty array if `modevalue` is not an array ([#1940](https://github.com/arco-design/arco-design-vue/pull/1940))
+- **table:** Fix the problem that there is no shadow when only the `operations` column is fixed ([#1938](https://github.com/arco-design/arco-design-vue/pull/1938))
+
+### 💅 Style
+
+- **select:** Unify the suffix icon of `select` component for single selection and multi-selection as `arrow-icon`. ([#2005](https://github.com/arco-design/arco-design-vue/pull/2005))
+
+
+## 2.40.1
+
+`2022-12-23`
+
+### 🐛 BugFix
+
+- **input:** Fix `change` event trigger logic problem ([#1990](https://github.com/arco-design/arco-design-vue/pull/1990))
+- **switch:** Fixed the switch component whose type is line, size is small, and the checked state dot offset is incorrect ([#1975](https://github.com/arco-design/arco-design-vue/pull/1975))
+- **list:** Fix the problem that the scroll bar appears in the grid list mode ([#1970](https://github.com/arco-design/arco-design-vue/pull/1970))
+- **date-picker:** Fix the problem that the panel text display error under internationalization ([#1965](https://github.com/arco-design/arco-design-vue/pull/1965))
+
+### 💅 Style
+
+- **tabs:** Fix the problem that `size` does not take effect under `rounded` and `capsule` types ([#1988](https://github.com/arco-design/arco-design-vue/pull/1988))
+
+
+## 2.40.0
+
+`2022-12-09`
+
+### 🆕 Feature
+
+- **scrollbar:** Add scrollLeft and scrollTop methods ([#1909](https://github.com/arco-design/arco-design-vue/pull/1909))
+- **table:** The change event increases the current data parameter ([#1893](https://github.com/arco-design/arco-design-vue/pull/1893))
+- **avatar:** Add image-url attribute to support the use of image URLs ([#1810](https://github.com/arco-design/arco-design-vue/pull/1810))
+- **auto-complete:** Add focus and blur methods ([#1809](https://github.com/arco-design/arco-design-vue/pull/1809))
+
+### 🐛 BugFix
+
+- **date-picker:** Fix the bug that the `feedback` attribute of the `Form` component does not take effect in the `date-picker` component. ([#1932](https://github.com/arco-design/arco-design-vue/pull/1932))
+- **list:** Fix the problem that the scrollbar attribute fails when passing the virtual scrollbar attribute ([#1929](https://github.com/arco-design/arco-design-vue/pull/1929))
+- **form:** Fix the bug that `validate-status` attribute of `Form` component does not take effect in `date-picker` component. ([#1928](https://github.com/arco-design/arco-design-vue/pull/1928))
+
+
+## 2.39.2
+
+`2022-12-02`
+
+### 🐛 BugFix
+
+- **table:** Fix the problem that thead will have a vertical scroll bar in some cases ([#1913](https://github.com/arco-design/arco-design-vue/pull/1913))
+- **input:** Fix change event triggering issue and clear clearing issue ([#1912](https://github.com/arco-design/arco-design-vue/pull/1912))
+- **divider:** Fix the problem that the style is wrong when setting size ([#1905](https://github.com/arco-design/arco-design-vue/pull/1905))
+- **carousel:** Fix the problem that the transparent background image of `Carousel` cannot cover the previous image ([#1901](https://github.com/arco-design/arco-design-vue/pull/1901))
+
+
+## 2.39.1
+
+`2022-11-25`
+
+### 🐛 BugFix
+
+- Fix the problem that the Japanese language pack does not display certain properties ([#1890](https://github.com/arco-design/arco-design-vue/pull/1890))
+- **pagination:** Fix the problem that the page number may exceed the number of pages when the pages become smaller ([#1879](https://github.com/arco-design/arco-design-vue/pull/1879))
+
+### 🆎 TypeScript
+
+- **tree-select:** update the type of trigger-props ([#1885](https://github.com/arco-design/arco-design-vue/pull/1885))
+
+
+## 2.39.0
+
+`2022-11-18`
+
+### 🆕 Feature
+
+- **transfer:** Added panel slot to allow custom content ([#1873](https://github.com/arco-design/arco-design-vue/pull/1873))
+- **transfer:** internally replaced with a virtual scrollbar ([#1873](https://github.com/arco-design/arco-design-vue/pull/1873))
+- **tree-select:** Replace the virtual scrollbar component and add the scrollbar property ([#1872](https://github.com/arco-design/arco-design-vue/pull/1872))
+- **transfer:** can hide select all checkbox ([#1845](https://github.com/arco-design/arco-design-vue/pull/1845))
+- **message:** Add `resetOnHover` property to pause and restart timing when the mouse moves in ([#1841](https://github.com/arco-design/arco-design-vue/pull/1841))
+
+### 🐛 BugFix
+
+- **space:** fix split margin ([#1864](https://github.com/arco-design/arco-design-vue/pull/1864))
+- **switch:** Fix value of hook before state change ([#1859](https://github.com/arco-design/arco-design-vue/pull/1859))
+- **switch:** Fix style token issue ([#1859](https://github.com/arco-design/arco-design-vue/pull/1859))
+- **date-picker:** year range can't skip by 10 year ([#1847](https://github.com/arco-design/arco-design-vue/pull/1847))
+
+### 💎 Enhancement
+
+- **upload:** add some common file type ([#1857](https://github.com/arco-design/arco-design-vue/pull/1857))
+
+
+## 2.38.3
+
+`2022-11-11`
+
+### 🐛 BugFix
+
+- **table:** Fixed an issue where a warning would appear when customizing table elements in some scenarios
+
+
+## 2.38.2
+
+`2022-11-09`
+
+### 🐛 BugFix
+
+- **table:** Fix row selector state error ([#1849](https://github.com/arco-design/arco-design-vue/pull/1849))
+
+
+## 2.38.1
+
+`2022-11-04`
+
+### 🐛 BugFix
+
+- **input-tag:** Fixed delete key deleting unavailable options ([#1836](https://github.com/arco-design/arco-design-vue/pull/1836))
+- Fixed some issues with virtual lists ([#1834](https://github.com/arco-design/arco-design-vue/pull/1834))
+- **slider:** fix the slider show wrong position when set min value ([#1826](https://github.com/arco-design/arco-design-vue/pull/1826))
+- **pagination:** Fix jumper prompt warning problem ([#1822](https://github.com/arco-design/arco-design-vue/pull/1822))
+- **input:** Fix the problem of component cursor reporting error in some scenarios ([#1820](https://github.com/arco-design/arco-design-vue/pull/1820))
+- **date-picker:** Fix internal property error issue ([#1818](https://github.com/arco-design/arco-design-vue/pull/1818))
+- **radio:** Fix `radio-group` state not reset when resetting value ([#1813](https://github.com/arco-design/arco-design-vue/pull/1813))
+- **table:** fix param when rowClass as function ([#1812](https://github.com/arco-design/arco-design-vue/pull/1812))
+
+### 💎 Enhancement
+
+- **icon:** Replace the flying book icon ([#1835](https://github.com/arco-design/arco-design-vue/pull/1835))
+
+
+## 2.38.0
+
+`2022-10-28`
+
+### 🆕 Feature
+
+- **space:** add `split` slot ([#1774](https://github.com/arco-design/arco-design-vue/pull/1774))
+
+### 🐛 BugFix
+
+- **select:** Fix formatLabel error when there is no data ([#1797](https://github.com/arco-design/arco-design-vue/pull/1797))
+- **modal:** Fix the problem that z-index does not take effect when custom style ([#1796](https://github.com/arco-design/arco-design-vue/pull/1796))
+- **radio:** Fix the problem that the state is not cleared when clearing model-value ([#1794](https://github.com/arco-design/arco-design-vue/pull/1794))
+- **checkbox:** Fix the problem that the state is not cleared when clearing model-value ([#1794](https://github.com/arco-design/arco-design-vue/pull/1794))
+- **form:** Do not modify the original object data of the rule ([#1779](https://github.com/arco-design/arco-design-vue/pull/1779))
+- **modal:** Fix the problem that closing does not unload internal components in function calls ([#1778](https://github.com/arco-design/arco-design-vue/pull/1778))
+- **drawer:** Fix the problem that closing does not unload internal components in function calls ([#1778](https://github.com/arco-design/arco-design-vue/pull/1778))
+
+### 💅 Style
+
+- **table:** Fix stripe style issue in dark mode ([#1795](https://github.com/arco-design/arco-design-vue/pull/1795))
+
+### 🆎 TypeScript
+
+- Add instance type export ([#1782](https://github.com/arco-design/arco-design-vue/pull/1782))
+
+
+## 2.38.0-beta.2
+
+`2022-10-21`
+
+### 🐛 BugFix
+
+- **date-picker:** Fix the problem of disabled style error under safari ([#1770](https://github.com/arco-design/arco-design-vue/pull/1770))
+- **trigger:** Fix the problem of wrong arrow positioning in windows ([#1480](https://github.com/arco-design/arco-design-vue/pull/1480))
+- **modal:** Fixed the problem that the unloading of incoming subcomponents would not be triggered under the function call
+
+### 💎 Enhancement
+
+- **cascader:** When the submenus are all disabled when optimizing multi-selection, the parent prohibits the selection ([#1771](https://github.com/arco-design/arco-design-vue/pull/1771))
+- **progress:** Optimize the display logic of split points ([#1755](https://github.com/arco-design/arco-design-vue/pull/1755))
+- **pagination:** Optimize number processing when entering page numbers ([#1750](https://github.com/arco-design/arco-design-vue/pull/1750))
+
+
+## 2.38.0-beta.1
+
+`2022-10-14`
+
+### 🆕 Feature
+
+- The table, select, and list components have added the scrollbar attribute to support switching virtual scroll bars ([#1747](https://github.com/arco-design/arco-design-vue/pull/1747))
+- **notification:** notification and  notification listspace style adjustment ([#1676](https://github.com/arco-design/arco-design-vue/pull/1676))
+- **notification:** `showIcon` not working ([#1676](https://github.com/arco-design/arco-design-vue/pull/1676))
+- **notification:** support custom close icon & close element ([#1676](https://github.com/arco-design/arco-design-vue/pull/1676))
+- **notification:** support custom style ([#1676](https://github.com/arco-design/arco-design-vue/pull/1676))
+- **notification:** temove the notification corresponding to `id` ([#1676](https://github.com/arco-design/arco-design-vue/pull/1676))
+- **notification:** demo ([#1676](https://github.com/arco-design/arco-design-vue/pull/1676))
+- **descriptions:** The `layout-fixed` of the table style in the description. The width will be evenly distributed when it's set to `fixed`. ([#1670](https://github.com/arco-design/arco-design-vue/pull/1670))
+
+### 🐛 BugFix
+
+- **transfer:** Fix can't scroll problem ([#1723](https://github.com/arco-design/arco-design-vue/pull/1723))
+- **spin:** Fix the problem that size is invalid ([#1717](https://github.com/arco-design/arco-design-vue/pull/1717))
+
+### 💎 Enhancement
+
+- **select:** Increase the cache of selected items, and optimize the label display problem during remote search ([#1731](https://github.com/arco-design/arco-design-vue/pull/1731))
+- **modal:** Functional calls can set the renderToBody parameter ([#1682](https://github.com/arco-design/arco-design-vue/pull/1682))
+
+### 💅 Style
+
+- **table:** Fixed the problem that summary row height was compressed when both summary row and scroll were enabled in the table ([#1733](https://github.com/arco-design/arco-design-vue/pull/1733))
+
+### 🆎 TypeScript
+
+- **collapse:** Fix key attribute definition of `collapse-item` to allow number ([#1743](https://github.com/arco-design/arco-design-vue/pull/1743))
+
+
 ## 2.37.4
 
 `2022-09-30`

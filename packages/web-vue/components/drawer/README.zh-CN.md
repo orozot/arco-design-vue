@@ -35,8 +35,8 @@ description: 触发命令后，从屏幕一侧滑出的抽屉式的面板。
 |ok-text|确认按钮的内容|`string`|`-`||
 |cancel-text|取消按钮的内容|`string`|`-`||
 |ok-loading|确认按钮是否为加载中状态|`boolean`|`false`||
-|ok-button-props|确认按钮的Props|`object`|`-`|2.9.0|
-|cancel-button-props|取消按钮的Props|`object`|`-`|2.9.0|
+|ok-button-props|确认按钮的Props|`ButtonProps`|`-`|2.9.0|
+|cancel-button-props|取消按钮的Props|`ButtonProps`|`-`|2.9.0|
 |unmount-on-close|关闭时是否卸载节点|`boolean`|`false`|2.12.0|
 |width|抽屉的宽度（仅在placement为right,left时可用）|`number\|string`|`250`||
 |height|抽屉的高度（仅在placement为top,bottom时可用）|`number\|string`|`250`||
@@ -44,18 +44,21 @@ description: 触发命令后，从屏幕一侧滑出的抽屉式的面板。
 |drawer-style|抽屉的样式|`CSSProperties`|`-`||
 |on-before-ok|触发 ok 事件前的回调函数。如果返回 false 则不会触发后续事件，也可使用 done 进行异步关闭。|`(  done: (closed: boolean) => void) => void \| boolean \| Promise<void \| boolean>`|`-`||
 |on-before-cancel|触发 cancel 事件前的回调函数。如果返回 false 则不会触发后续事件。|`() => boolean`|`-`||
-|esc-to-close|是否支持 ESC 键关闭对话框|`boolean`|`true`|2.15.0|
+|esc-to-close|是否支持 ESC 键关闭抽屉|`boolean`|`true`|2.15.0|
+|render-to-body|抽屉是否挂载在 `body` 元素下|`boolean`|`true`||
 |header|是否展示头部内容|`boolean`|`true`|2.33.0|
 |footer|是否展示底部内容|`boolean`|`true`|2.11.0|
 |hide-cancel|是否隐藏取消按钮|`boolean`|`false`|2.19.0|
 ### `<drawer>` Events
 
-|事件名|描述|参数|
-|---|---|---|
-|ok|点击确定按钮时触发|-|
-|cancel|点击取消、关闭按钮时触发|-|
-|open|抽屉打开后（动画结束）触发|-|
-|close|抽屉关闭后（动画结束）触发|-|
+|事件名|描述|参数|版本|
+|---|---|---|:---|
+|ok|点击确定按钮时触发|-||
+|cancel|点击取消、关闭按钮时触发|-||
+|open|抽屉打开后（动画结束）触发|-||
+|close|抽屉关闭后（动画结束）触发|-||
+|before-open|对话框打开前触发|-|2.43.0|
+|before-close|对话框关闭前触发|-|2.43.0|
 ### `<drawer>` Slots
 
 |插槽名|描述|参数|版本|
@@ -110,7 +113,9 @@ Drawer._context = app._context;
 |onBeforeCancel|触发 cancel 事件前的回调函数。如果返回 false 则不会触发后续事件。|`() => boolean`|`-`||
 |onOpen|抽屉打开后（动画结束）触发|`() => void`|`-`||
 |onClose|抽屉关闭后（动画结束）触发|`() => void`|`-`||
-|escToClose|是否支持 ESC 键关闭对话框|`boolean`|`true`|2.15.0|
+|onBeforeOpen|抽屉打开前触发|`() => void`|`-`|2.43.0|
+|onBeforeClose|抽屉关闭前触发|`() => void`|`-`|2.43.0|
+|escToClose|是否支持 ESC 键关闭抽屉|`boolean`|`true`|2.15.0|
 |header|是否展示头部内容|`boolean \| RenderContent`|`true`|2.33.0|
 |footer|是否展示底部内容|`boolean \| RenderContent`|`true`|2.11.0|
 |hideCancel|是否隐藏取消按钮|`boolean`|`false`|2.19.0|
@@ -119,9 +124,10 @@ Drawer._context = app._context;
 
 ### DrawerReturn
 
-|参数名|描述|类型|默认值|
-|---|---|---|:---:|
-|close|关闭对话框|`() => void`|`-`|
+|参数名|描述|类型|默认值|版本|
+|---|---|---|:---:|:---|
+|close|关闭抽屉|`() => void`|`-`||
+|update|更新抽屉|`(config: DrawerUpdateConfig) => void`|`-`|2.43.2|
 
 
 
@@ -129,6 +135,6 @@ Drawer._context = app._context;
 
 |参数名|描述|类型|默认值|
 |---|---|---|:---:|
-|open|打开对话框|`(config: DrawerConfig, appContext?: AppContext) => DrawerReturn`|`-`|
+|open|打开抽屉|`(config: DrawerConfig, appContext?: AppContext) => DrawerReturn`|`-`|
 
 

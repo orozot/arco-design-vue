@@ -2,6 +2,53 @@
 changelog: true
 ```
 
+## 2.45.2
+
+`2023-04-21`
+
+
+## 2.43.2
+
+`2023-02-24`
+
+### 💎 Enhancement
+
+- add update method of function call ([#2155](https://github.com/arco-design/arco-design-vue/pull/2155))
+
+
+## 2.40.0
+
+`2022-12-09`
+
+
+## 2.38.0
+
+`2022-10-28`
+
+### 🐛 BugFix
+
+- Fix the problem that z-index does not take effect when custom style ([#1796](https://github.com/arco-design/arco-design-vue/pull/1796))
+- Fix the problem that closing does not unload internal components in function calls ([#1778](https://github.com/arco-design/arco-design-vue/pull/1778))
+
+
+## 2.38.0-beta.2
+
+`2022-10-21`
+
+### 🐛 问题修复
+
+- **modal:** Fixed the problem that the unloading of incoming subcomponents would not be triggered under the function call
+
+
+## 2.38.0-beta.1
+
+`2022-10-14`
+
+### 💎 Enhancement
+
+- Functional calls can set the renderToBody parameter ([#1682](https://github.com/arco-design/arco-design-vue/pull/1682))
+
+
 ## 2.37.4
 
 `2022-09-30`

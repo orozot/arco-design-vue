@@ -20,14 +20,20 @@
       </span>
     </span>
     <!--  prettier-ignore  -->
-    <template v-if="type !== 'line' && size !== 'small' && ($slots.checked || $slots.unchecked)">
+    <template
+      v-if="
+        type !== 'line' &&
+        size !== 'small' &&
+        ($slots.checked || checkedText || $slots.unchecked || uncheckedText)
+      "
+    >
       <span :class="`${prefixCls}-text-holder`">
-        <slot v-if="computedCheck" name="checked" />
-        <slot v-else name="unchecked" />
+        <slot v-if="computedCheck" name="checked">{{ checkedText }}</slot>
+        <slot v-else name="unchecked">{{ uncheckedText }}</slot>
       </span>
       <span :class="`${prefixCls}-text`">
-        <slot v-if="computedCheck" name="checked" />
-        <slot v-else name="unchecked" />
+        <slot v-if="computedCheck" name="checked">{{ checkedText }}</slot>
+        <slot v-else name="unchecked">{{ uncheckedText }}</slot>
       </span>
     </template>
   </button>
@@ -40,7 +46,7 @@ import { getPrefixCls } from '../_utils/global-config';
 import IconLoading from '../icon/icon-loading';
 import { useFormItem } from '../_hooks/use-form-item';
 import { useSize } from '../_hooks/use-size';
-import { isFunction, isPromise } from '../_utils/is';
+import { isFunction } from '../_utils/is';
 
 export default defineComponent({
   name: 'Switch',
@@ -138,8 +144,26 @@ export default defineComponent({
      */
     beforeChange: {
       type: Function as PropType<
-        (newValue: boolean) => Promise<boolean | void> | boolean | void
+        (
+          newValue: string | number | boolean
+        ) => Promise<boolean | void> | boolean | void
       >,
+    },
+    /**
+     * @zh 打开状态时的文案（`type='line'`和`size='small'`时不生效）
+     * @en Copywriting when opened (not effective when `type='line'` and `size='small'`)
+     * @version 2.45.0
+     */
+    checkedText: {
+      type: String,
+    },
+    /**
+     * @zh 关闭状态时的文案（`type='line'`和`size='small'`时不生效）
+     * @en Copywriting when closed (not effective when `type='line'` and `size='small'`)
+     * @version 2.45.0
+     */
+    uncheckedText: {
+      type: String,
     },
   },
   emits: {
@@ -147,7 +171,7 @@ export default defineComponent({
     /**
      * @zh 值改变时触发
      * @en Trigger when the value changes
-     * @param {boolean|string|number} value
+     * @param { boolean | string | number } value
      * @param {Event} ev
      */
     'change': (value: boolean | string | number, ev: Event) => true,
@@ -214,16 +238,14 @@ export default defineComponent({
         return;
       }
       const checked = !computedCheck.value;
+      const checkedValue = checked ? props.checkedValue : props.uncheckedValue;
       const shouldChange = props.beforeChange;
 
-      if (
-        (shouldChange && isPromise(shouldChange)) ||
-        isFunction(shouldChange)
-      ) {
+      if (isFunction(shouldChange)) {
         _loading.value = true;
         try {
-          const result = await shouldChange(checked);
-          if (result) {
+          const result = await shouldChange(checkedValue);
+          if (result ?? true) {
             handleChange(checked, ev);
           }
         } finally {
@@ -253,19 +275,21 @@ export default defineComponent({
         [`${prefixCls}-checked`]: computedCheck.value,
         [`${prefixCls}-disabled`]: mergedDisabled.value,
         [`${prefixCls}-loading`]: computedLoading.value,
+        [`${prefixCls}-custom-color`]:
+          props.type === 'line' && (props.checkedColor || props.uncheckedColor),
       },
     ]);
 
     const buttonStyle = computed(() => {
       if (computedCheck.value && props.checkedColor) {
-        return {
-          backgroundColor: props.checkedColor,
-        };
+        return props.type === 'line'
+          ? { '--custom-color': props.checkedColor }
+          : { backgroundColor: props.checkedColor };
       }
       if (!computedCheck.value && props.uncheckedColor) {
-        return {
-          backgroundColor: props.uncheckedColor,
-        };
+        return props.type === 'line'
+          ? { '--custom-color': props.uncheckedColor }
+          : { backgroundColor: props.uncheckedColor };
       }
       return undefined;
     });

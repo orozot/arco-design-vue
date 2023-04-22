@@ -1,4 +1,4 @@
-import { isFunction, isNumber, isObject } from '../_utils/is';
+import { isFunction, isNumber, isObject, isString } from '../_utils/is';
 import type {
   FilterOption,
   SelectOptionGroup,
@@ -32,10 +32,16 @@ export const getKeyFromValue = (
   if (isObject(value)) {
     return `__arco__option__object__${value[valueKey]}`;
   }
-  if (value || isNumber(value)) {
+  if (value || isNumber(value) || isString(value)) {
     return `__arco__option__${typeof value}-${value}`;
   }
   return '';
+};
+
+export const hasEmptyStringKey = (
+  optionInfoMap: Map<string, SelectOptionInfo>
+) => {
+  return optionInfoMap.has(`__arco__option__string-`);
 };
 
 export const createOptionInfo = (

@@ -2,6 +2,24 @@
 changelog: true
 ```
 
+## 2.45.1
+
+`2023-04-14`
+
+### 🐛 BugFix
+
+- Fix `sizeStyle` failure issue ([#2327](https://github.com/arco-design/arco-design-vue/pull/2327))
+
+
+## 2.41.0
+
+`2022-12-30`
+
+### 🐛 BugFix
+
+- Fix the bug that the image id may not be collected and cause preview errors ([#1992](https://github.com/arco-design/arco-design-vue/pull/1992))
+
+
 ## 2.37.3
 
 `2022-09-23`

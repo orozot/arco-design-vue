@@ -2,6 +2,29 @@
 changelog: true
 ```
 
+## 2.45.1
+
+`2023-04-14`
+
+### 🐛 BugFix
+
+- Fix the abnormal display of search results when the width of the control is short ([#2326](https://github.com/arco-design/arco-design-vue/pull/2326))
+
+
+## 2.40.0
+
+`2022-12-09`
+
+
+## 2.38.0-beta.2
+
+`2022-10-21`
+
+### 💎 Enhancement
+
+- When the submenus are all disabled when optimizing multi-selection, the parent prohibits the selection ([#1771](https://github.com/arco-design/arco-design-vue/pull/1771))
+
+
 ## 2.34.1
 
 `2022-08-05`

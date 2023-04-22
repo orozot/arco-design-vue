@@ -2,6 +2,77 @@
 changelog: true
 ```
 
+## 2.44.6
+
+`2023-03-31`
+
+### 🐛 BugFix
+
+- modify parameter transferred in extra-button slot ([#2272](https://github.com/arco-design/arco-design-vue/pull/2272))
+
+
+## 2.44.2
+
+`2023-03-17`
+
+### 🆎 TypeScript
+
+- beforeUpload allows to return a boolean value ([#2204](https://github.com/arco-design/arco-design-vue/pull/2204))
+
+
+## 2.43.0
+
+`2023-02-10`
+
+### 🆕 Feature
+
+- Added file list extra button slot `#extra-button` ([#2060](https://github.com/arco-design/arco-design-vue/pull/2060))
+
+
+## 2.42.0
+
+`2023-01-13`
+
+### 🆕 Feature
+
+- Add `showPreviewButton` property ([#2049](https://github.com/arco-design/arco-design-vue/pull/2049))
+
+### 🐛 BugFix
+
+- Fixed an issue that could cause file deletion errors when uploading ([#2048](https://github.com/arco-design/arco-design-vue/pull/2048))
+
+
+## 2.41.0
+
+`2022-12-30`
+
+### 🆕 Feature
+
+- Add `upload` method ([#2010](https://github.com/arco-design/arco-design-vue/pull/2010))
+
+### 🐛 BugFix
+
+- Fix the bug that the `upload` component judged wrongly when verifying that the uploaded file conforms to the `accept` format in some scenarios. ([#2007](https://github.com/arco-design/arco-design-vue/pull/2007))
+
+
+## 2.39.1
+
+`2022-11-25`
+
+### 🆕 Feature
+
+- chang the type of utils file ([#1887](https://github.com/arco-design/arco-design-vue/pull/1887))
+
+
+## 2.39.0
+
+`2022-11-18`
+
+### 💎 Enhancement
+
+- add some common file type ([#1857](https://github.com/arco-design/arco-design-vue/pull/1857))
+
+
 ## 2.34.1
 
 `2022-08-05`
